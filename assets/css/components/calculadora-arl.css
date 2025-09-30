@@ -1,0 +1,827 @@
+
+/* ===============================================
+   CALCULADORA ARL - UBUNTU SEGUROS (RESPONSIVE)
+   Archivo: components/calculadora-arl-responsive.css
+   
+   Dependencias:
+   - css/utils/reset.css
+   - css/utils/variables.css
+   =============================================== */
+
+/* Imports de dependencias (agregar al HTML) */
+/*
+@import url('../utils/reset.css');
+@import url('../utils/variables.css');
+*/
+
+/* ===============================================
+   CSS VARIABLES & RESET INTEGRADO
+   =============================================== */
+
+
+/* ===============================================
+   ESTILOS BASE RESPONSIVOS
+   =============================================== */
+
+body {
+    font-family: var(--font-family);
+    background: var(--background-light);
+    color: var(--text-primary);
+    line-height: var(--line-height-normal);
+    overflow-x: hidden;
+}
+
+/* ===============================================
+   LAYOUT RESPONSIVO MEJORADO
+   =============================================== */
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    width: 100%;
+}
+
+.main-content {
+    margin-top: var(--header-height);
+    padding: clamp(2rem, 5vw, 4rem) 0;
+    min-height: 100vh;
+}
+
+/* ===============================================
+   HEADER RESPONSIVO
+   =============================================== */
+
+.page-header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+    padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem);
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    border-radius: var(--radius-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.page-header h1 {
+    font-size: clamp(1.875rem, 5vw, 3rem);
+    font-weight: var(--font-weight-extrabold);
+    margin-bottom: var(--spacing-base);
+    position: relative;
+    z-index: 1;
+    line-height: var(--line-height-tight);
+}
+
+.page-header p {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    line-height: var(--line-height-relaxed);
+}
+
+/* ===============================================
+   LAYOUT GRID ADAPTATIVO
+   =============================================== */
+
+.calculator-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+/* Desktop: 2 columnas */
+@media (min-width: 1024px) {
+    .calculator-container {
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(2rem, 4vw, 4rem);
+    }
+}
+
+/* Tablet grande: 1 columna pero más espaciosa */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .calculator-container {
+        gap: var(--spacing-2xl);
+    }
+}
+
+/* ===============================================
+   FORMULARIO Y RESULTADOS RESPONSIVOS
+   =============================================== */
+
+.form-section, .results-section {
+    background: var(--background-white);
+    padding: clamp(1rem, 3vw, 2.5rem);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    transition: var(--transition-all);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.form-section:hover, .results-section:hover {
+    box-shadow: var(--shadow-primary);
+    transform: translateY(-2px);
+}
+
+.form-section h2, .results-section h2 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xl);
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
+    font-weight: var(--font-weight-bold);
+    padding-bottom: var(--spacing-base);
+    border-bottom: 3px solid var(--primary-color);
+    line-height: var(--line-height-tight);
+}
+
+/* ===============================================
+   GRUPOS DE INPUT RESPONSIVOS
+   =============================================== */
+
+.input-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: clamp(0.75rem, 2vw, 1rem);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-family: inherit;
+    transition: var(--transition-all);
+    background: var(--background-white);
+    min-height: 44px; /* Accesibilidad táctil */
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(233, 84, 32, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ===============================================
+   BOTONES RESPONSIVOS
+   =============================================== */
+
+.calculate-btn {
+    width: 100%;
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    border: none;
+    padding: clamp(0.75rem, 2.5vw, 1rem) var(--spacing-xl);
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-all);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-height: 48px;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-primary-lg);
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+@media (min-width: 480px) {
+    .action-buttons {
+        flex-direction: row;
+        gap: var(--spacing-base);
+    }
+}
+
+.action-btn {
+    flex: 1;
+    padding: clamp(0.5rem, 2vw, 0.75rem) var(--spacing-base);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: var(--transition-all);
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    min-height: 40px;
+}
+
+.export-btn {
+    background: var(--gradient-hero);
+    color: var(--text-white);
+}
+
+.export-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(15, 20, 25, 0.3);
+}
+
+.clear-btn {
+    background: #DC3545;
+    color: var(--text-white);
+}
+
+.clear-btn:hover {
+    background: #C82333;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(220, 53, 69, 0.3);
+}
+
+/* ===============================================
+   LOADING STATE
+   =============================================== */
+
+.loading {
+    display: none;
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.loading.show {
+    display: block;
+}
+
+.spinner {
+    border: 4px solid var(--border-light);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: clamp(32px, 8vw, 40px);
+    height: clamp(32px, 8vw, 40px);
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--spacing-base);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===============================================
+   TARJETAS DE RESUMEN RESPONSIVAS
+   =============================================== */
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-base);
+    margin-bottom: var(--spacing-xl);
+}
+
+@media (min-width: 480px) {
+    .summary-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+}
+
+@media (min-width: 768px) {
+    .summary-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.summary-card {
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    box-shadow: var(--shadow-primary);
+    transition: var(--transition-all);
+    animation: fadeInScale 0.6s ease forwards;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-primary-lg);
+}
+
+.summary-card h3 {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    opacity: 0.9;
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: var(--font-weight-medium);
+}
+
+.summary-card .value {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+}
+
+/* ===============================================
+   LISTA DE GRUPOS RESPONSIVA
+   =============================================== */
+
+.employee-group-list {
+    margin-top: var(--spacing-xl);
+}
+
+.employee-group-item {
+    background: var(--background-light);
+    padding: var(--spacing-base);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-base);
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    transition: var(--transition-all);
+}
+
+@media (min-width: 768px) {
+    .employee-group-item {
+        flex-direction: row;
+        align-items: center;
+        padding: var(--spacing-lg);
+    }
+}
+
+.employee-group-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+}
+
+.group-info {
+    flex-grow: 1;
+}
+
+.group-summary {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+}
+
+.group-details {
+    color: var(--text-secondary);
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    line-height: 1.4;
+}
+
+.group-contribution {
+    text-align: left;
+    margin-top: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    .group-contribution {
+        text-align: right;
+        margin-top: 0;
+        margin-left: var(--spacing-lg);
+    }
+}
+
+.group-contribution .monthly {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+}
+
+.group-contribution .annual {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.remove-btn {
+    background: #DC3545;
+    color: var(--text-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-base);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-all);
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    align-self: flex-start;
+    min-height: 36px;
+}
+
+@media (min-width: 768px) {
+    .remove-btn {
+        align-self: center;
+        margin-left: var(--spacing-base);
+    }
+}
+
+.remove-btn:hover {
+    background: #C82333;
+    transform: scale(1.05);
+}
+
+/* ===============================================
+   SECCIÓN DE INFORMACIÓN RESPONSIVA
+   =============================================== */
+
+.info-section {
+    background: rgba(233, 84, 32, 0.05);
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border-radius: var(--radius-xl);
+    border-left: 4px solid var(--primary-color);
+    margin-top: var(--spacing-lg);
+}
+
+.info-section h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-base);
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    font-weight: var(--font-weight-semibold);
+}
+
+.info-section p {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+/* ===============================================
+   CONTENIDO SEO RESPONSIVO
+   =============================================== */
+
+.info-content {
+    margin: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.content-card {
+    background: var(--background-white);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.content-card h2 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: clamp(1.5rem, 4vw, 1.875rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+}
+
+.content-card h3 {
+    color: var(--primary-color);
+    margin: var(--spacing-lg) 0 var(--spacing-base);
+    font-size: clamp(1.125rem, 3vw, 1.25rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+}
+
+.content-card p {
+    margin-bottom: var(--spacing-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+}
+
+/* ===============================================
+   TABLA DE RIESGOS RESPONSIVA
+   =============================================== */
+
+.risk-table-container {
+    background: var(--background-white);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-light);
+    margin-top: var(--spacing-2xl);
+}
+
+.risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+}
+
+.risk-table caption {
+    caption-side: top;
+    padding: var(--spacing-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+}
+
+.risk-table th,
+.risk-table td {
+    padding: clamp(0.5rem, 2vw, 1rem);
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.risk-table th {
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+}
+
+.risk-table td {
+    background: var(--background-white);
+}
+
+.risk-table tr:hover td {
+    background: var(--background-light);
+}
+
+.risk-class {
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+.risk-rate {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+/* Tabla horizontal scrollable en móviles */
+@media (max-width: 767px) {
+    .risk-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .risk-table {
+        min-width: 600px;
+    }
+    
+    .risk-table th:last-child,
+    .risk-table td:last-child {
+        min-width: 250px;
+    }
+}
+
+/* ===============================================
+   NOTIFICACIONES RESPONSIVAS
+   =============================================== */
+
+.notification {
+    position: fixed;
+    top: var(--spacing-lg);
+    right: var(--spacing-base);
+    left: var(--spacing-base);
+    padding: var(--spacing-base) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    color: var(--text-white);
+    font-weight: var(--font-weight-semibold);
+    z-index: calc(var(--z-fixed) + 1);
+    box-shadow: var(--shadow-lg);
+    animation: slideIn var(--transition-base) ease;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+@media (min-width: 768px) {
+    .notification {
+        right: var(--spacing-lg);
+        left: auto;
+        max-width: 400px;
+    }
+}
+
+.notification.success {
+    background: #28A745;
+}
+
+.notification.error {
+    background: #DC3545;
+}
+
+.notification.warning {
+    background: #FFC107;
+    color: var(--text-primary);
+}
+
+.notification.info {
+    background: #17A2B8;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+/* ===============================================
+   ANIMACIONES DE ENTRADA
+   =============================================== */
+
+.form-section,
+.results-section,
+.content-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.summary-card {
+    animation: fadeInScale 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===============================================
+   UTILIDADES RESPONSIVAS
+   =============================================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-base); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+/* ===============================================
+   MEJORAS DE ACCESIBILIDAD
+   =============================================== */
+
+/* Focus visible para navegación por teclado */
+*:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Mejores contrastes en estados hover/focus */
+button:hover, 
+select:hover, 
+input:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Mejores espacios táctiles para móviles */
+@media (max-width: 767px) {
+    button, 
+    input, 
+    select,
+    .action-btn,
+    .remove-btn {
+        min-height: 44px;
+        font-size: 16px; /* Previene zoom en iOS */
+    }
+}
+
+/* ===============================================
+   RESPONSIVE BREAKPOINTS ESPECÍFICOS
+   =============================================== */
+
+/* Móviles pequeños (320px - 479px) */
+@media (max-width: 479px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    .page-header {
+        margin-bottom: var(--spacing-xl);
+        border-radius: var(--radius-lg);
+    }
+    
+    .calculator-container {
+        gap: var(--spacing-base);
+    }
+    
+    .form-section, .results-section {
+        padding: 1rem;
+    }
+    
+    .summary-card {
+        padding: var(--spacing-base);
+    }
+}
+
+/* Móviles medianos (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .page-header {
+        padding: 2.5rem 1.25rem;
+    }
+    
+    .form-section, .results-section {
+        padding: 1.5rem;
+    }
+}
+
+/* Tablets (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .page-header {
+        padding: 3rem 2rem;
+    }
+}
+
+/* Desktop pequeño (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+
+/* Desktop grande (1200px+) */
+@media (min-width: 1200px) {
+    .calculator-container {
+        gap: var(--spacing-4xl);
+    }
+    
+    .form-section, .results-section {
+        padding: 3rem;
+    }
+}

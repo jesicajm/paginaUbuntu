@@ -1,0 +1,128 @@
+.services-highlight {
+    margin-top: 50px;
+    text-align: center;
+    background: #0f172a;
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.service-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    padding: 25px 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.service-item:hover::before {
+    left: 100%;
+}
+
+.service-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.service-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    /* Remove any margin or padding that might be causing offset */
+    margin: 0;
+    padding: 0;
+}
+
+.service-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+    /* Ensure SVG is perfectly centered */
+    display: block;
+    margin: auto;
+}
+
+.service-text {
+    flex: 1;
+    line-height: 1.4;
+    /* Ensure text aligns with icon center */
+    display: flex;
+    align-items: center;
+}
+
+.disclaimer {
+    color: rgba(255,255,255,0.85);
+    margin-top: 40px;
+    font-style: italic;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .services-list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-item {
+        padding: 20px 15px;
+        font-size: 1rem;
+        gap: 15px;
+    }
+
+    .service-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .service-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .section-header h2 {
+        font-size: 2.2rem;
+    }
+
+    .section-header p {
+        font-size: 1rem;
+    }
+}

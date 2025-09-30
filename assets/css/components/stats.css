@@ -1,0 +1,219 @@
+/* ========================================
+   STATS SECTION - Ubuntu Seguros
+   ======================================== */
+
+   .stats-section {
+    background: #0f172a;
+    padding: var(--spacing-4xl) 0;
+    border-bottom: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.stats-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    position: relative;
+    z-index: 2;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-3xl);
+    align-items: center;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-lg);
+    background: #0f172a;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.stat-number {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--primary-light);
+    line-height: 1;
+    margin-bottom: var(--spacing-sm);
+    display: block;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+}
+
+.stat-label {
+    font-size: var(--font-size-base);
+    color: var(--background-white);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: center;
+    line-height: var(--line-height-relaxed);
+}
+
+/* Animation states */
+.stat-number.animate {
+    transform: scale(1.02);
+}
+
+.stat-item:hover .stat-number {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Counter animation effect */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.stat-number.count-animation {
+    animation: countUp 0.8s ease-out forwards;
+}
+
+/* Stagger animation for items */
+.stat-item:nth-child(1) .stat-number.count-animation {
+    animation-delay: 0ms;
+}
+
+.stat-item:nth-child(2) .stat-number.count-animation {
+    animation-delay: 200ms;
+}
+
+.stat-item:nth-child(3) .stat-number.count-animation {
+    animation-delay: 400ms;
+}
+
+.stat-item:nth-child(4) .stat-number.count-animation {
+    animation-delay: 600ms;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: var(--spacing-2xl);
+    }
+    
+    .stat-number {
+        font-size: var(--font-size-4xl);
+    }
+}
+
+/* TABLET - mantener 2 elementos por fila y centrar el tercero */
+@media (max-width: 768px) and (min-width: 481px) {
+    .stats-section {
+        padding: var(--spacing-3xl) 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+        justify-items: center;
+    }
+    
+    /* Centrar el tercer elemento cuando quede solo en la fila */
+    .stat-item:nth-child(3):nth-last-child(1) {
+        grid-column: span 2;
+        justify-self: center;
+        max-width: 280px;
+    }
+    
+    .stat-item {
+        padding: var(--spacing-base);
+    }
+    
+    .stat-number {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .stat-label {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* MOBILE - una columna centrada en pantallas <= 480px */
+@media (max-width: 480px) {
+    .stats-section {
+        padding: var(--spacing-3xl) 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: var(--spacing-xl);
+        max-width: 300px; /* Ancho máximo controlado */
+        margin: 0 auto; /* Centrar el grid completo */
+        justify-items: center; /* Centrar cada elemento dentro del grid */
+    }
+    
+    .stat-item {
+        padding: var(--spacing-lg);
+        width: 100%;
+        max-width: 280px; /* Ancho máximo del item */
+        grid-column: span 1; /* Reset grid-column para mobile */
+    }
+    
+    .stat-number {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .stat-label {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* MOBILE MUY PEQUEÑO - optimización adicional */
+@media (max-width: 380px) {
+    .stats-grid {
+        max-width: 260px; /* Reducir aún más el ancho */
+        gap: var(--spacing-lg);
+    }
+    
+    .stat-item {
+        padding: var(--spacing-lg);
+        max-width: 240px;
+    }
+    
+    .stat-number {
+        font-size: var(--font-size-4xl);
+    }
+}

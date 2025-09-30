@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubuntu Seguros - Bienestar Empresarial</title>
+
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="assets/css/utils/reset.css">
+    <link rel="stylesheet" href="assets/css/utils/variables.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components/header.css">
+    <link rel="stylesheet" href="assets/css/components/hero.css">
+    <link rel="stylesheet" href="assets/css/components/pilares-section.css">
+    <link rel="stylesheet" href="assets/css/components/stats.css">
+    <link rel="stylesheet" href="assets/css/components/services.css">
+    <link rel="stylesheet" href="assets/css/components/companies.css">
+    <link rel="stylesheet" href="assets/css/components/features.css">
+    <link rel="stylesheet" href="assets/css/components/services-high.css">
+    <link rel="stylesheet" href="assets/css/components/wellness-activities.css">
+    <link rel="stylesheet" href="assets/css/components/cta.css">
+    <link rel="stylesheet" href="assets/css/components/footer.css">
+    <!-- <link rel="stylesheet" href="assets/css/utils/animations.css">
+    <link rel="stylesheet" href="assets/css/utils/responsive.css"> -->
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header Actualizado con Logo -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="logo-container">
+                <img src="assets/images/logos/logoSinCirculo.png" alt="Ubuntu Seguros" class="logo-image">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#empresas">Empresas</a></li>
+                <li><a href="#actividades">Actividades</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <div class="hamburger">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+            </button>
+
+            <a href="/assets/components/calculadora-arl.html" id="header-cta" class="btn-primary cta-button">Calcular ARL</a>
+        </nav>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <ul class="mobile-nav-links">
+                    <li><a href="#servicios" class="mobile-nav-link">
+                            <span class="mobile-nav-icon">🏥</span>
+                            <span class="mobile-nav-text">Servicios</span>
+                        </a></li>
+                    <li><a href="#empresas" class="mobile-nav-link">
+                            <span class="mobile-nav-icon">🏢</span>
+                            <span class="mobile-nav-text">Empresas</span>
+                        </a></li>
+                    <li><a href="#actividades" class="mobile-nav-link">
+                            <span class="mobile-nav-icon">🧘</span>
+                            <span class="mobile-nav-text">Actividades</span>
+                        </a></li>
+                    <li><a href="#contacto" class="mobile-nav-link">
+                            <span class="mobile-nav-icon">📧</span>
+                            <span class="mobile-nav-text">Contacto</span>
+                        </a></li>
+                </ul>
+
+                <div class="mobile-cta-container">
+                    <a href="/assets/components/calculadora-arl.html" class="mobile-cta-button">
+                        <span class="mobile-cta-icon">🧮</span>
+                        Calcular ARL
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Bienestar empresarial que <span class="highlight">transforma</span> equipos</h1>
+                <p>Soluciones integrales en seguridad, salud y bienestar laboral para un crecimiento sostenible.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="hero-primary-cta">Comenzar ahora</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="dashboard-mockup">
+                    <div class="dashboard-header">
+                        <div class="dashboard-dot"></div>
+                        <div class="dashboard-dot"></div>
+                        <div class="dashboard-dot"></div>
+                    </div>
+                    <div class="dashboard-content">
+                        <h4>Indicadores de Seguridad y Bienestar</h4>
+
+                        <!-- Métrica 1: Índice Productividad -->
+                        <div class="progress-section">
+                            <div class="metric-row">
+                                <span class="metric-label">Índice Productividad</span>
+                                <span class="metric-value">94.5%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="94.5" style="--progress-width: 94.5%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Métrica 2: Empleados Capacitados -->
+                        <div class="progress-section">
+                            <div class="metric-row">
+                                <span class="metric-label">Empleados capacitados en SST</span>
+                                <span class="metric-value">96%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="96" style="--progress-width: 96%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Métrica 3: Índice de Bienestar -->
+                        <div class="progress-section">
+                            <div class="metric-row">
+                                <span class="metric-label">Índice de Bienestar</span>
+                                <span class="metric-value">4.7/5</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="94" style="--progress-width: 94%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Métrica 4: Ahorro en Costos (sin barra) -->
+                        <div class="metric-row">
+                            <span class="metric-label">Ahorro en Costos</span>
+                            <span class="metric-value">$2.4M</span>
+                        </div>
+
+                        <!-- Chart placeholder -->
+                        <!-- <div class="chart-placeholder">
+                            <div class="chart-line"></div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pillars Section - Agregar después del Hero -->
+    <section class="pillars-section">
+        <div class="container">
+            <div class="pillars-container">
+                <!-- Desktop Accordion Layout -->
+                <div class="pillars-accordion">
+                    <div class="pillar-item" data-pillar="personas">
+                        <div class="pillar-header" tabindex="0">
+                            <div class="pillar-left">
+                                <div class="pillar-icon">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM4 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM10 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM15.39 10.56C16.71 9.7 18.53 9.55 20 10.4v1.15c-.94-.85-2.24-.85-3.61-.26-.75-1.09-2.26-1.53-3.39-.97v10.68H11V11c0-1.1.9-2 2-2s2 .9 2 2v-.44zM8.61 10.56c1.32-.86 3.14-1.01 4.61-.16V11c0-1.1-.9-2-2-2s-2 .9-2 2v9H7V10.98c-1.13-.56-2.64-.12-3.39.97C2.24 11.55.94 11.55 0 12.4V11.25c1.47-.85 3.29-.7 4.61.44V11c0-1.1.9-2 2-2s2 .9 2 2v-.44z" />
+                                    </svg>
+                                </div>
+                                <h3 class="pillar-title">Formación especializada</h3>
+                            </div>
+                            <svg class="pillar-arrow" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6-6-6 1.41-1.42z" />
+                            </svg>
+                        </div>
+                        <div class="pillar-description">
+                            Capacita grupos de apoyo SST y desarrolla líderes en seguridad laboral.
+                        </div>
+                    </div>
+
+                    <div class="pillar-item" data-pillar="riesgo">
+                        <div class="pillar-header" tabindex="0">
+                            <div class="pillar-left">
+                                <div class="pillar-icon">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z" />
+                                    </svg>
+                                </div>
+                                <h3 class="pillar-title">Prevención inteligente</h3>
+                            </div>
+                            <svg class="pillar-arrow" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6-6-6 1.41-1.42z" />
+                            </svg>
+                        </div>
+                        <div class="pillar-description">
+                            Detecta amenazas antes de que impacten, sin esperar a que ocurran incidentes.
+                        </div>
+                    </div>
+
+                    <div class="pillar-item" data-pillar="tiempo">
+                        <div class="pillar-header" tabindex="0">
+                            <div class="pillar-left">
+                                <div class="pillar-icon">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M15,1H9V3H15M11,14H13V8H11M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20Z" />
+                                    </svg>
+                                </div>
+                                <h3 class="pillar-title">Optimización automática</h3>
+                            </div>
+                            <svg class="pillar-arrow" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6-6-6 1.41-1.42z" />
+                            </svg>
+                        </div>
+                        <div class="pillar-description">
+                            Reduce trámites administrativos y acelera procesos sin complicaciones.
+                        </div>
+                    </div>
+
+                    <div class="pillar-item" data-pillar="bienestar">
+                        <div class="pillar-header" tabindex="0">
+                            <div class="pillar-left">
+                                <div class="pillar-icon">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3c1.74,0 3.41,0.81 4.5,2.08C13.09,3.81 14.76,3 16.5,3 19.58,3 22,5.41 22,8.5c0,3.77-3.4,6.86-8.55,11.53L12,21.35Z" />
+                                    </svg>
+                                </div>
+                                <h3 class="pillar-title"> Bienestar integral</h3>
+                            </div>
+                            <svg class="pillar-arrow" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6-6-6 1.41-1.42z" />
+                            </svg>
+                        </div>
+                        <div class="pillar-description">
+                            Facilita actividades de bienestar a través de la intermediación ARL cuando las necesites.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Grid Layout -->
+                <div class="pillars-grid" style="display: none;">
+                    <div class="pillar-item">
+                        <div class="pillar-header">
+                            <div class="pillar-left">
+                                <div class="pillar-icon">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM4 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM10 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM15.39 10.56C16.71 9.7 18.53 9.55 20 10.4v1.15c-.94-.85-2.24-.85-3.61-.26-.75-1.09-2.26-1.53-3.39-.97v10.68H11V11c0-1.1.9-2 2-2s2 .9 2 2v-.44zM8.61 10.56c1.32-.86 3.14-1.01 4.61-.16V11c0-1.1-.9-2-2-2s-2 .9-2 2v9H7V10.98c-1.13-.56-2.64-.12-3.39.97C2.24 11.55.94 11.55 0 12.4V11.25c1.47-.85 3.29-.7 4.61.44V11c0-1.1.9-2 2-2s2 .9 2 2v-.44z" />
+                                    </svg>
+                                </div>
+                                <h3 class="pillar-title">Personas</h3>
+                            </div>
+                        </div>
+                        <div class="pillar-description">
+                            Invertir en el desarrollo del talento humano aumenta la productividad hasta un 40% y reduce
+                            la rotación de personal en un 65%, generando ahorros significativos en procesos de selección
+                            y capacitación mientras construyes equipos más comprometidos y eficientes.
+                        </div>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-header">
+                            <div class="pillar-left">
+                                <div class="pillar-icon">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z" />
+                                    </svg>
+                                </div>
+                                <h3 class="pillar-title">Riesgo</h3>
+                            </div>
+                        </div>
+                        <div class="pillar-description">
+                            La gestión proactiva de riesgos previene pérdidas operativas y reduce costos de seguros
+                            hasta un 30%. Protegemos tu capital de trabajo, garantizamos continuidad operativa y
+                            fortalecemos la confianza de inversores y stakeholders en tu organización.
+                        </div>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-header">
+                            <div class="pillar-left">
+                                <div class="pillar-icon">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M15,1H9V3H15M11,14H13V8H11M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20Z" />
+                                    </svg>
+                                </div>
+                                <h3 class="pillar-title">Tiempo</h3>
+                            </div>
+                        </div>
+                        <div class="pillar-description">
+                            Optimizamos tus procesos para liberar tiempo valioso que puedes reinvertir en crecimiento
+                            estratégico. Nuestras soluciones ágiles reducen tiempos administrativos en 50%,
+                            permitiéndote enfocar recursos en actividades que generen mayor valor agregado y
+                            rentabilidad.
+                        </div>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-header">
+                            <div class="pillar-left">
+                                <div class="pillar-icon">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3c1.74,0 3.41,0.81 4.5,2.08C13.09,3.81 14.76,3 16.5,3 19.58,3 22,5.41 22,8.5c0,3.77-3.4,6.86-8.55,11.53L12,21.35Z" />
+                                    </svg>
+                                </div>
+                                <h3 class="pillar-title">Bienestar</h3>
+                            </div>
+                        </div>
+                        <div class="pillar-description">
+                            Empleados con bienestar integral son 31% más productivos y generan 37% más ventas. Reducimos
+                            el ausentismo laboral, mejoramos el clima organizacional y posicionamos tu marca como
+                            empleador de elección, atrayendo y reteniendo el mejor talento del mercado.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section" id="estadisticas">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Empresas Atendidas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Cumplimiento normativo</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfacción Cliente</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Section -->
+    <!-- <section class="companies" id="empresas">
+        <div class="container">
+            <div class="section-header">
+                <h2>Empresas que confían en nosotros</h2>
+            </div>
+            <div class="companies-scroll">
+                <div class="companies-track" id="companies-track">
+                    
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>¿Por qué nos eligen?</h2>
+                <p>Somos más que intermediarios en ARL: somos socios estratégicos que ponen a las personas en el centro,
+                    transformando organizaciones a través de soluciones integrales en seguridad, salud y bienestar
+                    laboral.</p>
+            </div>
+            <div class="services-highlight">
+                <div class="services-list">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z" />
+                            </svg>
+                        </div>
+                        <span class="service-text">Acompañamiento SG-SST Integral</span>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M14.5,16L13.5,15H12V12.5H11V15C11,15.6 11.4,16 12,16H13.5L14.5,17V16M13,8.5A0.5,0.5 0 0,0 12.5,8A0.5,0.5 0 0,0 12,8.5A0.5,0.5 0 0,0 12.5,9A0.5,0.5 0 0,0 13,8.5M18,9H15L13.5,7.5C13.1,7.1 12.6,6.9 12,6.9S10.9,7.1 10.5,7.5L6,12H3C2.4,12 2,12.4 2,13V16C2,16.6 2.4,17 3,17H6.2L10.5,21.3C10.9,21.7 11.4,21.9 12,21.9S13.1,21.7 13.5,21.3L15,19.8V9H18M7,12.5A0.5,0.5 0 0,1 7.5,12A0.5,0.5 0 0,1 8,12.5A0.5,0.5 0 0,1 7.5,13A0.5,0.5 0 0,1 7,12.5Z" />
+                            </svg>
+                        </div>
+                        <span class="service-text">Estrategias Lúdicas Innovadoras</span>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M11,10V14H13V12H14V10H11Z" />
+                            </svg>
+                        </div>
+                        <span class="service-text">Evaluación Riesgo Psicosocial</span>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M20,6C20.58,6 21.05,6.2 21.42,6.59C21.8,7 22,7.45 22,8V19C22,19.55 21.8,20 21.42,20.41C21.05,20.8 20.58,21 20,21H4C3.42,21 2.95,20.8 2.58,20.41C2.2,20 2,19.55 2,19V8C2,7.45 2.2,7 2.58,6.59C2.95,6.2 3.42,6 4,6H8V4C8,3.42 8.2,2.95 8.58,2.58C8.95,2.2 9.42,2 10,2H14C14.58,2 15.05,2.2 15.42,2.58C15.8,2.95 16,3.42 16,4V6H20M4,8V19H20V8H4M10,4V6H14V4H10M6,10H18V12H6V10M6,13H16V15H6V13M6,16H14V18H6V16Z" />
+                            </svg>
+                        </div>
+                        <span class="service-text">Formación de Líderes Efectivos</span>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35M7.5,5C5.5,5 4,6.5 4,8.5C4,11.39 7.14,14.24 12,18.55C16.86,14.24 20,11.39 20,8.5C20,6.5 18.5,5 16.5,5C15.04,5 13.69,5.65 12.94,6.76H11.06C10.31,5.65 8.96,5 7.5,5M12.5,11L14,9.5L15.5,11L14,12.5L12.5,11M8.5,11L10,9.5L11.5,11L10,12.5L8.5,11Z" />
+                            </svg>
+                        </div>
+                        <span class="service-text">Bienestar y Salud Preventiva</span>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M9,2V6H7C6.45,6 6,6.45 6,7V9C6,9.55 6.45,10 7,10H9V22H11V10H13C13.55,10 14,9.55 14,9V7C14,6.45 13.55,6 13,6H11V2H9M16,6V10H18V6H20V4H16V6M4,4V6H6V10H4V12H8V4H4Z" />
+                            </svg>
+                        </div>
+                        <span class="service-text">Conciliación Seguridad Social</span>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12,7C12.55,7 13,7.45 13,8C13,8.55 12.55,9 12,9C11.45,9 11,8.55 11,8C11,7.45 11.45,7 12,7M13,9H15L13.5,7.5C13.1,7.1 12.6,6.9 12,6.9S10.9,7.1 10.5,7.5L9,9H11C11,10.1 11.9,11 13,11S15,10.1 15,9H13M7,4H17V6H19V4C19,2.89 18.1,2 17,2H7C5.89,2 5,2.89 5,4V6H7V4M5,18V16H3V18C3,19.1 3.9,20 5,20H19C20.1,20 21,19.1 21,18V16H19V18H5M21,8H3V14H21V8M19,10H17V12H15V10H13V12H11V10H9V12H7V10H5V12H3V10H5V8H19V10Z" />
+                            </svg>
+                        </div>
+                        <span class="service-text">Pausas Activas Tecnológicas</span>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12,8A3,3 0 0,0 9,11A3,3 0 0,0 12,14A3,3 0 0,0 15,11A3,3 0 0,0 12,8M12,10A1,1 0 0,1 13,11A1,1 0 0,1 12,12A1,1 0 0,1 11,11A1,1 0 0,1 12,10M21,9V7.5C21,6.1 19.9,5 18.5,5C17.1,5 16,6.1 16,7.5V9C15.4,9 15,9.4 15,10V16C15,16.6 15.4,17 16,17H21C21.6,17 22,16.6 22,16V10C22,9.4 21.6,9 21,9M20,9H17V7.5C17,6.7 17.7,6 18.5,6C19.3,6 20,6.7 20,7.5V9M2,10V12H7V10H2M2,14V16H5V14H2M8,14V16H10V14H8M11,14V16H13V14H11Z" />
+                            </svg>
+                        </div>
+                        <span class="service-text">Auditorías y Seguimiento Continuo</span>
+                    </div>
+                </div>
+                <!-- <p style="color: rgba(255,255,255,0.9); margin-top: 20px; font-style: italic;">
+                    "Nuestro servicio de conciliación en seguridad social no tiene costo adicional.
+                    Es parte del acompañamiento integral que brindamos a las empresas que confían en nosotros."
+                </p> -->
+            </div>
+        </div>
+    </section>
+
+    <section class="wellness-activities" id="actividades">
+        <div class="container">
+            <div class="section-header">
+                <h2>Actividades de Bienestar</h2>
+                <p>Descubre las diversas actividades que facilitamos a través de la intermediación ARL para el bienestar integral de tus empleados</p>
+            </div>
+            
+            <div class="activities-container">
+                <!-- Desktop Collage View - Mantiene tu diseño actual -->
+                <div class="activities-collage">
+                    <div class="activity-item large" data-activity="yoga">
+                        <div class="activity-overlay">
+                            <h3>Yoga Empresarial</h3>
+                            <p>Sesiones de relajación y equilibrio mental</p>
+                        </div>
+                    </div>
+                    <div class="activity-item medium" data-activity="fitness">
+                        <div class="activity-overlay">
+                            <h3>Acondicionamiento Físico</h3>
+                            <p>Rutinas adaptadas al entorno laboral</p>
+                        </div>
+                    </div>
+                    <div class="activity-item small" data-activity="nutrition">
+                        <div class="activity-overlay">
+                            <h3>Nutrición</h3>
+                            <p>Charlas y talleres de alimentación saludable</p>
+                        </div>
+                    </div>
+                    <div class="activity-item small" data-activity="silla">
+                        <div class="activity-overlay">
+                            <h3>Silla masajeadora</h3>
+                            <p>Masajes relajantes para el bienestar</p>
+                        </div>
+                    </div>
+                    <div class="activity-item medium" data-activity="mental-health">
+                        <div class="activity-overlay">
+                            <h3>Salud Mental</h3>
+                            <p>Apoyo psicológico y manejo del estrés</p>
+                        </div>
+                    </div>
+                    <div class="activity-item small" data-activity="ergonomics">
+                        <div class="activity-overlay">
+                            <h3>Ergonomía</h3>
+                            <p>Prevención de lesiones laborales</p>
+                        </div>
+                    </div>
+                    <div class="activity-item large" data-activity="team-building">
+                        <div class="activity-overlay">
+                            <h3>Team Building</h3>
+                            <p>Actividades de integración y trabajo en equipo</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Mobile Carousel View - NUEVO CARRUSEL -->
+                <div class="mobile-carousel-container">
+                    <div class="carousel-wrapper" id="wellnessCarouselWrapper">
+                        <!-- Slide 1: Yoga Empresarial -->
+                        <div class="carousel-slide active" data-activity="yoga">
+                            <div class="slide-background"></div>
+                            <div class="slide-content">
+                                <h3>Yoga Empresarial</h3>
+                                <p>Sesiones de relajación y equilibrio mental que ayudan a reducir el estrés laboral y mejorar la concentración de tu equipo</p>
+                            </div>
+                        </div>
+    
+                        <!-- Slide 2: Acondicionamiento Físico -->
+                        <div class="carousel-slide" data-activity="fitness">
+                            <div class="slide-background"></div>
+                            <div class="slide-content">
+                                <h3>Acondicionamiento Físico</h3>
+                                <p>Rutinas adaptadas al entorno laboral que fortalecen el cuerpo y aumentan la energía para un mejor rendimiento</p>
+                            </div>
+                        </div>
+    
+                        <!-- Slide 3: Nutrición -->
+                        <div class="carousel-slide" data-activity="nutrition">
+                            <div class="slide-background"></div>
+                            <div class="slide-content">
+                                <h3>Nutrición</h3>
+                                <p>Charlas y talleres de alimentación saludable para promover hábitos nutricionales que mejoren la salud integral</p>
+                            </div>
+                        </div>
+    
+                        <!-- Slide 4: Silla Masajeadora -->
+                        <div class="carousel-slide" data-activity="silla">
+                            <div class="slide-background"></div>
+                            <div class="slide-content">
+                                <h3>Silla Masajeadora</h3>
+                                <p>Masajes relajantes para el bienestar que alivian tensiones musculares y reducen el estrés físico</p>
+                            </div>
+                        </div>
+    
+                        <!-- Slide 5: Salud Mental -->
+                        <div class="carousel-slide" data-activity="mental-health">
+                            <div class="slide-background"></div>
+                            <div class="slide-content">
+                                <h3>Salud Mental</h3>
+                                <p>Apoyo psicológico y manejo del estrés para mantener un equilibrio emocional saludable en el entorno laboral</p>
+                            </div>
+                        </div>
+    
+                        <!-- Slide 6: Ergonomía -->
+                        <div class="carousel-slide" data-activity="ergonomics">
+                            <div class="slide-background"></div>
+                            <div class="slide-content">
+                                <h3>Ergonomía</h3>
+                                <p>Prevención de lesiones laborales mediante técnicas y posturas correctas que mejoran la salud ocupacional</p>
+                            </div>
+                        </div>
+    
+                        <!-- Slide 7: Team Building -->
+                        <div class="carousel-slide" data-activity="team-building">
+                            <div class="slide-background"></div>
+                            <div class="slide-content">
+                                <h3>Team Building</h3>
+                                <p>Actividades de integración y trabajo en equipo que fortalecen las relaciones laborales y mejoran la comunicación</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Navigation buttons -->
+                    <button class="carousel-nav prev" id="wellnessPrevBtn" aria-label="Anterior">‹</button>
+                    <button class="carousel-nav next" id="wellnessNextBtn" aria-label="Siguiente">›</button>
+    
+                    <!-- Autoplay control
+                    <button class="autoplay-control" id="wellnessAutoplayBtn" title="Pausar/Reanudar">⏸️</button> -->
+    
+                    <!-- Indicators -->
+                    <div class="carousel-indicators" id="wellnessIndicators">
+                        <button class="indicator active" data-slide="0"></button>
+                        <button class="indicator" data-slide="1"></button>
+                        <button class="indicator" data-slide="2"></button>
+                        <button class="indicator" data-slide="3"></button>
+                        <button class="indicator" data-slide="4"></button>
+                        <button class="indicator" data-slide="5"></button>
+                        <button class="indicator" data-slide="6"></button>
+                    </div>
+                </div>
+    
+                <!-- Mobile/Tablet Grid View - Tu código existente para tablets -->
+                <div class="activities-grid" id="activities-grid">
+                    <!-- Las actividades se cargarán dinámicamente aquí -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Grid Section -->
+    <section class="benefits-grid">
+        <div class="container">
+            <h2 class="section-title">Soluciones Integrales de Protección</h2>
+            <p class="section-subtitle">Descubre cómo puedes brindar seguridad y tranquilidad a tu equipo mientras fortaleces tu propuesta de valor como empleador</p>
+            
+            <div class="benefits-container">
+                <div class="benefits-column">
+                    <h3>
+                        <!-- <div class="icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3c-1.87 0-3.39 1.52-3.39 3.39s1.52 3.39 3.39 3.39 3.39-1.52 3.39-3.39S13.87 3 12 3zM21 9v2h-2v7a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-7H3V9a1 1 0 0 1 1-1h5.28c.43.9 1.13 1.62 1.98 2.08.17.09.34.16.52.2.12.03.25.04.38.04h.76c.13 0 .26-.01.38-.04.18-.04.35-.11.52-.2.85-.46 1.55-1.18 1.98-2.08H20a1 1 0 0 1 1 1z"/>
+                            </svg>
+                        </div> -->
+                        Soluciones para los Empleados
+                    </h3>
+                    <div class="benefit-card">Pólizas Colectivas de Vida</div>
+                    <div class="benefit-card">Pólizas Colectivas de Salud</div>
+                    <div class="benefit-card">Pólizas de Accidentes Personales</div>
+                    <!-- <div class="benefit-card">Pólizas Exequiales</div> -->
+                    <div class="benefit-card">Plan Crédito Protegido</div>
+                    <!-- <div class="benefit-card">Plan Inversión Protegida</div> -->
+                </div>
+                
+                <div class="benefits-column">
+                    <h3>
+                        <!-- <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/>
+                            </svg>
+                        </div> -->
+                        Soluciones para las Empresas
+                    </h3>
+                    <div class="benefit-card">Pólizas Contra Incendio</div>
+                    <div class="benefit-card">Pólizas Multiriesgo</div>
+                    <div class="benefit-card">Pólizas de Responsabilidad Civil</div>
+                    <div class="benefit-card">Pólizas de Cumplimiento</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <h2>Transforma el bienestar de tu empresa hoy</h2>
+            <p>Únete a más de 500 empresas que ya están revolucionando el cuidado de sus empleados</p>
+            <button class="btn-primary" id="main-cta">Solicitar Asesoria</button>
+        </div>
+    </section>
+
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h3>Ubuntu Seguros</h3>
+                    <p>Transformando organizaciones a través de soluciones integrales en seguridad, salud y bienestar laboral.
+                    </p>
+                </div>
+
+                <!-- Services Section -->
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <p><a href="index.html#servicios">Seguros de Salud</a></p>
+                    <p><a href="index.html#servicios">Seguros de Vida</a></p>
+                    <p><a href="index.html#servicios">Accidentes Laborales</a></p>
+                    <p><a href="index.html#servicios">Bienestar Mental</a></p>
+                </div>
+
+                <!-- Company Section -->
+                <div class="footer-section">
+                    <h3>Empresa</h3>
+                    <p><a href="#">Sobre nosotros</a></p>
+                    <p><a href="#">Casos de éxito</a></p>
+                    <p><a href="#">Blog</a></p>
+                    <p><a href="#">Carreras</a></p>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>+57 (4) 123-4567</p>
+                    <p>hola@ubuntuseguros.com</p>
+                    <p>Medellín, Colombia</p>
+                </div>
+
+                <!-- Social Media -->
+                <div class="social-media">
+                    <h3 class="social-title">Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/ubuntu_seguros?igsh=MWwyeWwzOXVubHF2MQ==" class="social-link" aria-label="Instagram">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="WhatsApp">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ubuntu Seguros. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Imports -->
+    <script src="assets/js/components/navigation.js"></script>
+    <script type="module" src="assets/js/components/calculadora-arl.js"></script>
+    <script src="assets/js/components/wellness-activities.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

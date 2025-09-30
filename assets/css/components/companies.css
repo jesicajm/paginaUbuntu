@@ -1,0 +1,167 @@
+/* ========================================
+   COMPANIES COMPONENT - Ubuntu Seguros
+   ======================================== */
+
+.companies {
+    padding: var(--spacing-4xl) 0;
+    /* Fondo oscuro liso y elegante */
+    background: #0A0E13;
+    position: relative;
+    overflow: hidden;
+}
+
+.companies .container {
+    position: relative;
+}
+
+.companies .section-header h2 {
+    color: white;
+    font-weight: var(--font-weight-bold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.companies-scroll {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    margin: var(--spacing-xl) 0;
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+    );
+}
+
+.companies-track {
+    display: inline-flex;
+    animation: scroll 20s linear infinite;
+    gap: var(--spacing-3xl);
+    will-change: transform;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.company-logo {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+    font-weight: var(--font-weight-semibold);
+    color: rgba(255, 255, 255, 0.85);
+    transition: var(--transition-all);
+    white-space: nowrap;
+    min-width: 200px;
+    text-align: center;
+    flex-shrink: 0;
+    opacity: 0.8;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.company-logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(233, 84, 32, 0.15),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.company-logo:hover {
+    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(233, 84, 32, 0.15);
+    border-color: rgba(233, 84, 32, 0.3);
+    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.company-logo:hover::before {
+    left: 100%;
+}
+
+/* Modern glassmorphism design for company logos */
+.company-logo-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    padding: var(--spacing-base) var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    transition: var(--transition-all);
+    opacity: 0.8;
+    filter: grayscale(60%) brightness(1.2);
+}
+
+.company-logo-image:hover {
+    opacity: 1;
+    filter: grayscale(0%) brightness(1);
+    border-color: rgba(233, 84, 32, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(233, 84, 32, 0.2);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.company-logo-image img {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .companies {
+        padding: var(--spacing-3xl) 0;
+    }
+    
+    .companies-track {
+        gap: var(--spacing-xl);
+    }
+    
+    .company-logo {
+        min-width: 150px;
+        padding: var(--spacing-base) var(--spacing-lg);
+        font-size: var(--font-size-sm);
+    }
+    
+    .companies-scroll {
+        margin: var(--spacing-base) 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .company-logo {
+        min-width: 120px;
+        padding: var(--spacing-sm) var(--spacing-base);
+        font-size: var(--font-size-xs);
+    }
+}

@@ -1,0 +1,293 @@
+/* ========================================
+   PILARES SECTION - Ubuntu Seguros
+   ======================================== */
+
+/* Pilares de Valor Section - Degradado inspirado en Platzi Business */
+.pillars-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 20%, #2a2d5f 40%, #3a4d7a 60%, #2a2d5f 80%, #1a1f3a 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+}
+
+.pillars-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(233, 84, 32, 0.07) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.pillars-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    padding: 0 1rem;
+}
+
+/* MÓVIL - Layout por defecto hasta 768px - Accordion */
+.pillars-accordion {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.pillar-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    transition: var(--transition-all);
+    cursor: pointer;
+    display: block; /* Cambiado de flex a block */
+}
+
+.pillar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    width: 100%;
+}
+
+.pillar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1; /* Asegurar que tome el espacio disponible */
+}
+
+.pillar-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-all);
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(233, 84, 32, 0.3);
+}
+
+.pillar-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--text-white);
+}
+
+.pillar-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-white);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.pillar-arrow {
+    width: 24px;
+    height: 24px;
+    color: var(--text-white-70);
+    transition: var(--transition-all);
+    transform: rotate(0deg);
+    flex-shrink: 0;
+    margin-left: auto; /* Empujar la flecha hacia la derecha */
+}
+
+.pillar-item.active .pillar-arrow {
+    transform: rotate(180deg);
+    color: var(--primary-color);
+}
+
+.pillar-description {
+    color: var(--text-white-80);
+    line-height: 1.6;
+    font-size: var(--font-size-base);
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin-top: 0;
+    opacity: 0;
+}
+
+.pillar-item.active .pillar-description {
+    max-height: 200px; /* Altura fija más controlada */
+    margin-top: 1rem;
+    opacity: 1;
+}
+
+/* Hover effects para accordion móvil */
+.pillar-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.pillar-item:hover .pillar-icon {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(233, 84, 32, 0.4);
+}
+
+/* PANTALLAS MAYORES A 768px - 4 columnas en una fila con hover */
+@media (min-width: 769px) {
+    .pillars-section {
+        padding: 3rem 0;
+        min-height: 40vh;
+    }
+
+    .pillars-accordion {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+
+    .pillar-item {
+        display: flex;
+        align-items: center;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        position: relative;
+        min-height: 150px;
+    }
+
+    .pillar-item:hover {
+        transform: translateY(-4px);
+        background: transparent;
+        align-items: flex-start;
+    }
+
+    .pillar-header {
+        justify-content: flex-start;
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    .pillar-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: left;
+    }
+
+    .pillar-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0;
+    }
+
+    .pillar-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .pillar-title {
+        font-size: var(--font-size-xl);
+        margin: 0;
+    }
+
+    .pillar-arrow {
+        display: none !important;
+    }
+
+    .pillar-description {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: all 0.4s ease;
+        pointer-events: none;
+        padding: 0;
+        margin-top: 0;
+        text-align: left;
+        z-index: 10;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .pillar-item:hover .pillar-description {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Reset active states para pantallas mayores a 768px */
+    .pillar-item.active .pillar-description {
+        max-height: none;
+        margin-top: 0;
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    .pillar-item.active:hover .pillar-description {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile pequeño */
+@media (max-width: 480px) {
+    .pillars-section {
+        padding: 3rem 0;
+    }
+    
+    .pillar-item {
+        padding: 1.25rem;
+    }
+    
+    .pillar-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .pillar-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .pillar-title {
+        font-size: var(--font-size-base);
+    }
+    
+    .pillar-description {
+        font-size: 0.95rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .pillar-item,
+    .pillar-arrow,
+    .pillar-description {
+        transition: none !important;
+    }
+}
+
+.pillar-item:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: var(--radius-xl);
+}
+
+/* Grid fallback - oculto por defecto */
+.pillars-grid {
+    display: none !important;
+}
