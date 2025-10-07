@@ -27,7 +27,6 @@
         
         // Solo inicializar si estamos en mobile
         if (!this.isMobile) {
-            console.log('Wellness Carousel: Desktop mode - no se inicializa el carrusel');
             return;
         }
         
@@ -36,12 +35,11 @@
         
         // Solo continuar si encontramos los elementos necesarios
         if (this.wrapper && this.slides && this.slides.length > 0) {
-            console.log('Wellness Carousel: Inicializando en modo mobile');
             this.setupEventListeners();
             this.startAutoplay();
             this.updateCarousel();
         } else {
-            console.log('Wellness Carousel: Elementos no encontrados, no se inicializa');
+           return
         }
     }
     
@@ -52,15 +50,7 @@
         this.prevBtn = document.getElementById('wellnessPrevBtn');
         this.nextBtn = document.getElementById('wellnessNextBtn');
         this.autoplayBtn = document.getElementById('wellnessAutoplayBtn');
-        
-        console.log('Wellness Carousel: Elementos encontrados:', {
-            wrapper: !!this.wrapper,
-            slides: this.slides.length,
-            indicators: this.indicators.length,
-            prevBtn: !!this.prevBtn,
-            nextBtn: !!this.nextBtn,
-            autoplayBtn: !!this.autoplayBtn
-        });
+   
     }
     
     updateMobileState() {
@@ -249,7 +239,7 @@
     destroy() {
         this.pauseAutoplay();
         // Aquí podrías limpiar event listeners si fuera necesario
-        console.log('Wellness Carousel: Destruido');
+
     }
 }
 
@@ -289,7 +279,6 @@ domReady(() => {
 window.addEventListener('load', () => {
     setTimeout(() => {
         if (!window.wellnessCarousel || !window.wellnessCarousel.wrapper) {
-            console.log('Wellness Carousel: Backup initialization');
             initWellnessCarousel();
         }
     }, 1000);

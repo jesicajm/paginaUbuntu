@@ -32,6 +32,8 @@
     <meta property="twitter:image" content="https://ubuntuseguros.com/images/calculadora-arl-twitter.jpg">
     
     <!-- Canonical URL -->
+    <title>Ubuntu seguros - Bienestar empresarial</title>
+    <link rel="icon" href="../../assets/images/logos/logo.png" />
     <link rel="canonical" href="https://ubuntuseguros.com/calculadora-arl">
     
     <!-- Structured Data -->
@@ -94,44 +96,44 @@
             <div class="calculator-container">
                 <!-- Form Section -->
                 <section class="form-section">
-                    <h2>📊 Configurar Grupo de Empleados</h2>
+                    <h2>📊 Configurar grupo de empleados</h2>
                     <form id="employeeGroupForm">
                         <div class="input-group">
-                            <label for="employeeCount">Número de Empleados *</label>
+                            <label for="employeeCount">Número de empleados *</label>
                             <input type="number" id="employeeCount" min="1" max="9999" placeholder="Ej: 5" required>
                         </div>
 
                         <div class="input-group">
-                            <label for="salary">Salario Mensual por Empleado (COP) *</label>
+                            <label for="salary">Salario mensual por empleado (COP) *</label>
                             <input type="text" id="salary" placeholder="1.300.000" required>
                         </div>
 
                         <div class="input-group">
-                            <label for="riskClass">Clase de Riesgo Laboral *</label>
+                            <label for="riskClass">Clase de riesgo laboral *</label>
                             <select id="riskClass" required>
                                 <option value="">Seleccione la clase de riesgo</option>
-                                <option value="1">Clase I - Riesgo Mínimo (0.522%)</option>
-                                <option value="2">Clase II - Riesgo Bajo (1.044%)</option>
-                                <option value="3">Clase III - Riesgo Medio (2.436%)</option>
-                                <option value="4">Clase IV - Riesgo Alto (4.350%)</option>
-                                <option value="5">Clase V - Riesgo Máximo (6.960%)</option>
+                                <option value="1">Clase I - Riesgo mínimo (0.522%)</option>
+                                <option value="2">Clase II - Riesgo bajo (1.044%)</option>
+                                <option value="3">Clase III - Riesgo medio (2.436%)</option>
+                                <option value="4">Clase IV - Riesgo alto (4.350%)</option>
+                                <option value="5">Clase V - Riesgo máximo (6.960%)</option>
                             </select>
                         </div>
 
                         <div class="input-group">
-                            <label for="economicSector">Sector Económico (Opcional)</label>
+                            <label for="economicSector">Sector económico (Opcional)</label>
                             <select id="economicSector">
                                 <option value="">Seleccione el sector</option>
-                                <option value="comercio">Comercio, TIC, Financiero, Servicios</option>
-                                <option value="agricultura">Agricultura, Manufactura, Educación</option>
-                                <option value="alimentos">Alimentos, Químicos, Salud</option>
-                                <option value="textiles">Textiles, Metalmecánica, Transporte</option>
-                                <option value="petroleo">Petróleo, Construcción, Minería</option>
+                                <option value="comercio">Comercio, TIC, financiero, servicios</option>
+                                <option value="agricultura">Agricultura, manufactura, educación</option>
+                                <option value="alimentos">Alimentos, químicos, salud</option>
+                                <option value="textiles">Textiles, metalmecánica, transporte</option>
+                                <option value="petroleo">Petróleo, construcción, minería</option>
                             </select>
                         </div>
 
                         <button type="submit" class="calculate-btn">
-                            ➕ Agregar Grupo de Empleados
+                            ➕ Agregar grupo de empleados
                         </button>
                     </form>
 
@@ -145,31 +147,31 @@
                             📊 Exportar CSV
                         </button>
                         <button type="button" class="action-btn clear-btn" onclick="calculator.clearAllGroups()">
-                            🗑️ Limpiar Todo
+                            🗑️ Limpiar todo
                         </button>
                     </div>
 
                     <div class="info-section">
-                        <h3>💡 Información Importante</h3>
+                        <h3>💡 Información importante</h3>
                         <p>Los aportes ARL son responsabilidad del empleador y se calculan sobre el salario base del trabajador según la clase de riesgo de la actividad económica. Las tarifas son establecidas por la Superintendencia Financiera de Colombia.</p>
                     </div>
                 </section>
 
                 <!-- Results Section -->
                 <section class="results-section">
-                    <h2>📈 Resultados del Cálculo ARL</h2>
+                    <h2>📈 Resultados del cálculo ARL</h2>
                     
                     <div class="summary-cards">
                         <div class="summary-card">
-                            <h3>Total Empleados</h3>
+                            <h3>Total empleados</h3>
                             <div class="value" id="totalEmployees">0</div>
                         </div>
                         <div class="summary-card">
-                            <h3>Aporte Mensual</h3>
+                            <h3>Aporte mensual</h3>
                             <div class="value" id="totalMonthly">$0</div>
                         </div>
                         <div class="summary-card">
-                            <h3>Aporte Anual</h3>
+                            <h3>Aporte anual</h3>
                             <div class="value" id="totalAnnual">$0</div>
                         </div>
                     </div>
@@ -189,10 +191,10 @@
                     <h2>¿Qué es la ARL y cómo calcular los aportes?</h2>
                     <p>La <strong>Administradora de Riesgos Laborales (ARL)</strong> es un sistema de seguridad social que protege a los trabajadores contra accidentes de trabajo y enfermedades laborales en Colombia. Los empleadores deben realizar aportes mensuales según la clase de riesgo de la actividad económica.</p>
                     
-                    <h3>Clases de Riesgo Laboral en Colombia</h3>
+                    <h3>Clases de riesgo laboral en Colombia</h3>
                     <p>El sistema ARL clasifica las actividades económicas en 5 clases de riesgo, desde actividades de oficina hasta trabajos de alto riesgo como construcción y minería. Cada clase tiene una tarifa específica que se aplica sobre el salario del trabajador.</p>
                     
-                    <h3>Cálculo de Aportes ARL 2024</h3>
+                    <h3>Cálculo de aportes ARL</h3>
                     <p>El aporte se calcula multiplicando el salario mensual del empleado por la tarifa correspondiente a su clase de riesgo. Por ejemplo, un empleado con salario de $1.300.000 en Clase I pagaría: $1.300.000 × 0.522% = $6.786 mensuales.</p>
                 </div>
             </section>
@@ -202,36 +204,36 @@
                 <table class="risk-table">
                     <thead>
                         <tr>
-                            <th>Clase de Riesgo</th>
-                            <th>Tasa de Cotización</th>
-                            <th>Ejemplos de Actividades Económicas</th>
+                            <th>Clase de riesgo</th>
+                            <th>Tasa de cotización</th>
+                            <th>Ejemplos de zctividades económicas</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="risk-class">Clase I</td>
                             <td class="risk-rate">0.522%</td>
-                            <td>Comercio, Tecnología, Servicios Financieros, Administración Pública</td>
+                            <td>Comercio, tecnología, servicios financieros, administración pública</td>
                         </tr>
                         <tr>
                             <td class="risk-class">Clase II</td>
                             <td class="risk-rate">1.044%</td>
-                            <td>Agricultura, Cuero, Madera, Almacenamiento, Hoteles, Educación</td>
+                            <td>Agricultura, cuero, madera, almacenamiento, hoteles, educación</td>
                         </tr>
                         <tr>
                             <td class="risk-class">Clase III</td>
                             <td class="risk-rate">2.436%</td>
-                            <td>Industria de Alimentos, Química, Maquinaria, Sector Salud</td>
+                            <td>Industria de alimentos, química, maquinaria, sector salud</td>
                         </tr>
                         <tr>
                             <td class="risk-class">Clase IV</td>
                             <td class="risk-rate">4.350%</td>
-                            <td>Textiles, Papel, Plástico, Metalmecánica, Transporte, Vidrios</td>
+                            <td>Textiles, papel, plástico, metalmecánica, transporte, vidrios</td>
                         </tr>
                         <tr>
                             <td class="risk-class">Clase V</td>
                             <td class="risk-rate">6.960%</td>
-                            <td>Petróleo, Infraestructura, Construcción, Vigilancia, Minería</td>
+                            <td>Petróleo, infraestructura, construcción, vigilancia, minería</td>
                         </tr>
                     </tbody>
                 </table>

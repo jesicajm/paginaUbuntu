@@ -305,7 +305,6 @@ const FormHandler = {
 
             this.bindEvents();
             this.initialized = true;
-            console.log('FormHandler inicializado correctamente');
 
         } catch (error) {
             console.error('Error inicializando FormHandler:', error);
@@ -554,7 +553,7 @@ const ResultsDisplay = {
             }
 
             this.initialized = true;
-            console.log('ResultsDisplay inicializado correctamente');
+       
 
         } catch (error) {
             console.error('Error inicializando ResultsDisplay:', error);
@@ -822,7 +821,6 @@ class ARLCalculatorUbuntu {
      */
     async init() {
         try {
-            console.log('Inicializando Calculadora ARL Ubuntu Seguros v2.0.0');
 
             // Inicializar módulos
             FormHandler.init();
@@ -835,7 +833,6 @@ class ARLCalculatorUbuntu {
             this.bindGlobalEvents();
 
             this.initialized = true;
-            console.log('Calculadora ARL inicializada correctamente');
 
         } catch (error) {
             console.error('Error inicializando calculadora:', error);
@@ -866,7 +863,7 @@ class ARLCalculatorUbuntu {
             };
             
             this.employeeGroups.push(group);
-            console.log('Grupo agregado:', group);
+            
 
         } catch (error) {
             console.error('Error agregando grupo:', error);
@@ -1016,9 +1013,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Agregar funciones de utilidad al objeto global
         window.ARLUtils = ARLUtils;
         window.ARLConstants = ARLConstants;
-        
-        console.log('Aplicación ARL Ubuntu Seguros cargada exitosamente');
-        
+      
     } catch (error) {
         console.error('Error fatal al inicializar la aplicación:', error);
         document.body.innerHTML = `

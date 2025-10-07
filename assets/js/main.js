@@ -26,7 +26,6 @@ const App = {
         this.initAnimations();
         // Los pilares se inicializan con el script simplificado al final
         this.isLoaded = true;
-        console.log('Ubuntu Seguros Website Loaded ✅');
     },
 
     // Load dynamic content
@@ -41,9 +40,6 @@ const App = {
     bindEvents() {
         // Resize handler
         window.addEventListener('resize', this.handleResize.bind(this));
-        
-        // CTA button handlers
-        this.bindCTAButtons();
         
         // Update mobile state
         this.updateMobileState();
@@ -66,7 +62,6 @@ const App = {
 
     // Handle mobile state changes
     handleMobileStateChange() {
-        console.log(`Mode changed to: ${this.isMobile ? 'Mobile' : 'Desktop'}`);
         // Re-initialize components that need mobile/desktop handling
         if (window.Navigation) {
             window.Navigation.updateMobileState(this.isMobile);
@@ -124,7 +119,6 @@ const App = {
     // NUEVA FUNCIÓN: Animar elementos del dashboard
     // ========================================
     animateDashboardElements() {
-        console.log('🎯 Iniciando animaciones del dashboard');
         
         // 1. Animar barras de progreso de forma escalonada
         this.animateProgressBars();
@@ -142,16 +136,12 @@ const App = {
         const progressBars = document.querySelectorAll('.progress-fill');
         
         if (progressBars.length === 0) {
-            console.log('⚠️ No se encontraron barras de progreso');
             return;
         }
-
-        console.log(`📊 Animando ${progressBars.length} barras de progreso`);
         
         progressBars.forEach((bar, index) => {
             setTimeout(() => {
                 bar.classList.add('animate');
-                console.log(`✨ Barra ${index + 1} animada`);
             }, index * this.config.progressBarDelay);
         });
     },
@@ -164,9 +154,7 @@ const App = {
         
         if (chartLine) {
             chartLine.classList.add('animate');
-            console.log('📈 Línea del chart animada');
         } else {
-            console.log('⚠️ No se encontró la línea del chart');
         }
     },
     
@@ -175,11 +163,9 @@ const App = {
         const statsSection = document.querySelector('.stats-section');
         
         if (!statsSection) {
-            console.log('⚠️ No se encontró la sección de estadísticas');
             return;
         }
         
-        console.log('🎯 Configurando animación de estadísticas con scroll trigger');
         
         // Stats configuration - puedes personalizar estos valores
         const statsConfig = [
@@ -195,11 +181,10 @@ const App = {
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !hasAnimated) {
-                    console.log('📊 Usuario llegó a la sección de estadísticas - iniciando animación');
                     hasAnimated = true;
                     
                     const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    console.log(`🔢 Encontrados ${statNumbers.length} elementos de estadística`);
+
                     
                     // Add animation class to each stat item
                     statNumbers.forEach((stat, index) => {
@@ -209,7 +194,6 @@ const App = {
                         setTimeout(() => {
                             const config = statsConfig[index];
                             if (config) {
-                                console.log(`🎲 Iniciando contador ${index + 1}: ${config.start} → ${config.end}${config.suffix}`);
                                 this.animateCounter(
                                     stat, 
                                     config.start, 
@@ -223,7 +207,6 @@ const App = {
                     
                     // Disconnect observer after animation starts to prevent re-triggering
                     statsObserver.unobserve(entry.target);
-                    console.log('✅ Animación de estadísticas completada');
                 }
             });
         }, {
@@ -233,7 +216,6 @@ const App = {
         
         // Start observing the stats section
         statsObserver.observe(statsSection);
-        console.log('👁️ Observer configurado para la sección de estadísticas');
     },
 
     // Counter Animation Function (función existente)
@@ -372,32 +354,32 @@ const App = {
         const footerSections = [
             {
                 title: 'Ubuntu Seguros',
-                content: '<p>Transformando el bienestar empresarial a través de seguros integrales y tecnología de vanguardia.</p>'
+                content: '<p>Transformando organizaciones a través de soluciones integrales en seguridad, salud y bienestar laboral.</p>'
             },
             {
                 title: 'Servicios',
                 content: `
-                    <p><a href="#servicios">Seguros de Salud</a></p>
-                    <p><a href="#servicios">Seguros de Vida</a></p>
-                    <p><a href="#servicios">Accidentes Laborales</a></p>
-                    <p><a href="#servicios">Bienestar Mental</a></p>
+                    <p><a href="#features">Acompañamiento SG-SST</a></p>
+                    <p><a href="#features">Evaluación Riesgo Psicosocial</a></p>
+                    <p><a href="#features">Formación de Líderes</a></p>
+                    <p><a href="#actividades">Bienestar Mental</a></p>
                 `
             },
             {
                 title: 'Empresa',
                 content: `
-                    <p><a href="#">Sobre nosotros</a></p>
-                    <p><a href="#">Casos de éxito</a></p>
-                    <p><a href="#">Blog</a></p>
-                    <p><a href="#">Carreras</a></p>
+                    <p><a href="#pillars-section">Pilares de Valor</a></p>
+                    <p><a href="#estadisticas">Nuestros Resultados</a></p>
+                    <p><a href="#features">Por qué nos eligen</a></p>
+                    <p><a href="/assets/components/calculadora-arl.html">Calculadora ARL</a></p>
                 `
             },
             {
                 title: 'Contacto',
                 content: `
-                    <p>📞 +57 (4) 123-4567</p>
-                    <p>✉️ hola@ubuntuseguros.com</p>
-                    <p>📍 Medellín, Colombia</p>
+                    <p>+57 304 4999242</p>
+                    <p>daniela.parra@ubuntuseguros.com</p>
+                    <p>Medellín, Colombia</p>
                 `
             }
         ];
@@ -413,71 +395,8 @@ const App = {
         }
     },
 
-    // Bind CTA button events (función existente)
-    bindCTAButtons() {
-        const ctaButtons = [
-            'header-cta',
-            'hero-primary-cta',
-            'hero-secondary-cta',
-            'main-cta'
-        ];
-
-        ctaButtons.forEach(buttonId => {
-            const button = document.getElementById(buttonId);
-            if (button) {
-                if (buttonId === "header-cta") return;
-                
-                button.addEventListener('click', (e) => {
-                    this.handleCTAClick(e, buttonId);
-                });
-            }
-        });
-    },
-
-    // Handle CTA button clicks (función existente)
-    handleCTAClick(event, buttonId) {
-        event.preventDefault();
-        
-        // Analytics tracking
-        this.trackEvent('CTA Click', {
-            buttonId: buttonId,
-            location: this.getCTALocation(buttonId)
-        });
-
-        // Show demo modal or redirect
-        if (buttonId.includes('demo') || buttonId.includes('secondary')) {
-            this.showDemoModal();
-        } else {
-            this.showContactForm();
-        }
-    },
-
-    // Get CTA location for analytics (función existente)
-    getCTALocation(buttonId) {
-        const locations = {
-            'header-cta': 'Header',
-            'hero-primary-cta': 'Hero Primary',
-            'hero-secondary-cta': 'Hero Secondary',
-            'main-cta': 'Main CTA Section'
-        };
-        return locations[buttonId] || 'Unknown';
-    },
-
-    // Show demo modal (función existente)
-    showDemoModal() {
-        alert('Demo modal would open here. Integrate with your preferred modal library.');
-        console.log('Demo requested');
-    },
-
-    // Show contact form (función existente)
-    showContactForm() {
-        alert('Contact form would open here. Integrate with your preferred form handler.');
-        console.log('Contact form requested');
-    },
-
     // Track events (función existente)
     trackEvent(eventName, data) {
-        console.log(`Event: ${eventName}`, data);
         
         // Integrate with Google Analytics, Mixpanel, etc.
         if (typeof gtag !== 'undefined') {
@@ -493,7 +412,6 @@ const App = {
 (function() {
     'use strict';
 
-    console.log('🚀 Inicializando pilares con comportamiento actualizado...');
 
     // Configuración
     const CONFIG = {
@@ -504,7 +422,6 @@ const App = {
     // Función de logging condicional
     function log(...args) {
         if (CONFIG.debugMode) {
-            console.log('🎯 PILARES:', ...args);
         }
     }
 
@@ -522,7 +439,6 @@ const App = {
         log(`Encontrados ${pillars.length} pilares`);
 
         if (pillars.length === 0) {
-            console.error('❌ No se encontraron pilares');
             return;
         }
 
@@ -542,11 +458,6 @@ const App = {
         const description = pillar.querySelector('.pillar-description');
 
         if (!header || !arrow || !description) {
-            console.error(`❌ Pilar ${index + 1} tiene elementos faltantes:`, {
-                header: !!header,
-                arrow: !!arrow,
-                description: !!description
-            });
             return;
         }
 
@@ -667,42 +578,29 @@ const App = {
 
     // Función de diagnóstico completo
     function diagnosticoPillars() {
-        console.log('\n=== DIAGNÓSTICO COMPLETO PILARES ===');
         
         const pillars = document.querySelectorAll('.pillar-item');
-        console.log(`Total pilares: ${pillars.length}`);
-        console.log(`Viewport: ${window.innerWidth}px (${isMobile() ? 'MOBILE' : 'DESKTOP'})`);
         
         pillars.forEach((pillar, index) => {
-            console.log(`\nPilar ${index + 1}:`);
-            
+    
             const header = pillar.querySelector('.pillar-header');
             const arrow = pillar.querySelector('.pillar-arrow');
             const description = pillar.querySelector('.pillar-description');
             const title = pillar.querySelector('.pillar-title');
             
-            console.log(`  Header: ${header ? 'SI' : 'NO'}`);
-            console.log(`  Arrow: ${arrow ? 'SI' : 'NO'}`);
-            console.log(`  Description: ${description ? 'SI' : 'NO'}`);
-            console.log(`  Title: ${title ? title.textContent : 'NO'}`);
-            console.log(`  Active: ${pillar.classList.contains('active') ? 'SI' : 'NO'}`);
+          
             
             if (arrow) {
                 const arrowStyles = window.getComputedStyle(arrow);
-                console.log(`  Arrow display: ${arrowStyles.display}`);
-                console.log(`  Arrow transform: ${arrowStyles.transform}`);
-                console.log(`  Arrow color: ${arrowStyles.color}`);
+ 
             }
             
             if (description) {
                 const descStyles = window.getComputedStyle(description);
-                console.log(`  Desc maxHeight: ${descStyles.maxHeight}`);
-                console.log(`  Desc opacity: ${descStyles.opacity}`);
-                console.log(`  Desc marginTop: ${descStyles.marginTop}`);
+                
             }
         });
         
-        console.log('=== FIN DIAGNÓSTICO ===\n');
     }
 
     // Función de test manual
@@ -712,7 +610,6 @@ const App = {
             log(`Testeando pilar ${index + 1} manualmente`);
             handlePillarClick(pillars[index], index);
         } else {
-            console.error(`Índice ${index} fuera de rango. Disponibles: 0-${pillars.length - 1}`);
         }
     }
 
@@ -768,12 +665,6 @@ const App = {
                 window.showAllPillars = showAllPillars;
                 window.hideAllPillars = hideAllPillars;
                 
-                console.log('🔧 Funciones de debug disponibles:');
-                console.log('  - diagnosticoPillars() : diagnóstico completo');
-                console.log('  - testPillar(index) : probar pilar específico');
-                console.log('  - reinitPillars() : reinicializar pilares');
-                console.log('  - showAllPillars() : mostrar todos los pilares');
-                console.log('  - hideAllPillars() : ocultar todos los pilares');
             }
         }, 500);
     });
