@@ -10,7 +10,6 @@
     lastScrollY: 0,
     
     init() {
-        console.log('Initializing Navigation...');
         this.header = document.querySelector('.header');
         this.mobileToggle = document.getElementById('mobile-menu-toggle');
         this.mobileMenu = document.getElementById('mobile-menu');
@@ -23,11 +22,7 @@
         this.bindEvents();
         this.bindNavigationClicks();
         
-        console.log('Navigation initialized ✅', {
-            header: !!this.header,
-            mobileToggle: !!this.mobileToggle,
-            mobileMenu: !!this.mobileMenu
-        });
+  
     },
 
     bindEvents() {
@@ -86,7 +81,7 @@
     },
 
     openMobileMenu() {
-        console.log('Opening mobile menu...');
+    
         
         if (!this.mobileMenu || !this.mobileToggle) {
             console.error('Mobile menu elements not found!');
@@ -105,11 +100,11 @@
         // Focus management for accessibility
         this.mobileMenu.focus();
         
-        console.log('Mobile menu opened ✅');
+
     },
 
     closeMobileMenu() {
-        console.log('Closing mobile menu...');
+      
         
         if (!this.mobileMenu || !this.mobileToggle) {
             return;
@@ -123,8 +118,7 @@
         
         // Restore body scroll
         document.body.style.overflow = '';
-        
-        console.log('Mobile menu closed ✅');
+
     },
 
 
