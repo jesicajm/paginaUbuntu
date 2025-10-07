@@ -1,7 +1,7 @@
 /* WELLNESS ACTIVITIES COMPONENT - Ubuntu Seguros (LAYOUT RESPONSIVO + CARRUSEL)
    ======================================== */
 
-   .wellness-activities {
+.wellness-activities {
     padding: 5rem 0;
     background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 20%, #2a2d5f 40%, #3a4d7a 60%, #2a2d5f 80%, #1a1f3a 100%);
     position: relative;
@@ -176,43 +176,43 @@
 /* Gradientes específicos por actividad usando tus imágenes */
 .carousel-slide[data-activity="yoga"] .slide-background {
     background-image: 
-        linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.8) 100%),
+        /* linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.8) 100%), */
         url('../../images/wellness-activities/yoga.jpeg');
 }
 
 .carousel-slide[data-activity="fitness"] .slide-background {
     background-image: 
-        linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.8) 100%),
+        /* linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.8) 100%), */
         url('../../images/wellness-activities/futbolito.jpeg');
 }
 
 .carousel-slide[data-activity="nutrition"] .slide-background {
     background-image: 
-        linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.8) 100%),
+        /* linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.8) 100%), */
         url('../../images/wellness-activities/extintores.jpeg');
 }
 
 .carousel-slide[data-activity="silla"] .slide-background {
     background-image: 
-        linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.8) 100%),
+        /* linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.8) 100%), */
         url('../../images/wellness-activities/silla.jpeg');
 }
 
 .carousel-slide[data-activity="mental-health"] .slide-background {
     background-image: 
-        linear-gradient(135deg, rgba(108, 117, 125, 0.6) 0%, rgba(52, 58, 64, 0.8) 100%),
+        /* linear-gradient(135deg, rgba(108, 117, 125, 0.6) 0%, rgba(52, 58, 64, 0.8) 100%), */
         url('../../images/wellness-activities/WhatsApp\ Image\ 2025-08-06\ at\ 8.26.24\ PM.jpeg');
 }
 
 .carousel-slide[data-activity="ergonomics"] .slide-background {
     background-image: 
-        linear-gradient(135deg, rgba(108, 117, 125, 0.6) 0%, rgba(52, 58, 64, 0.8) 100%),
+        /* linear-gradient(135deg, rgba(108, 117, 125, 0.6) 0%, rgba(52, 58, 64, 0.8) 100%), */
         url('../../images/wellness-activities/arco.jpeg');
 }
 
 .carousel-slide[data-activity="team-building"] .slide-background {
     background-image: 
-        linear-gradient(135deg, rgba(111, 66, 193, 0.6) 0%, rgba(102, 126, 234, 0.8) 100%),
+        /* linear-gradient(135deg, rgba(111, 66, 193, 0.6) 0%, rgba(102, 126, 234, 0.8) 100%), */
         url('../../images/wellness-activities/charla.jpeg');
 }
 
