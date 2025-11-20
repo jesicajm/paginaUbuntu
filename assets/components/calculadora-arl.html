@@ -32,7 +32,6 @@
     <meta property="twitter:image" content="https://ubuntuseguros.com/images/calculadora-arl-twitter.jpg">
     
     <!-- Canonical URL -->
-    <title>Ubuntu seguros - Bienestar empresarial</title>
     <link rel="icon" href="../../assets/images/logos/logo.png" />
     <link rel="canonical" href="https://ubuntuseguros.com/calculadora-arl">
     
@@ -75,16 +74,101 @@
     <link rel="stylesheet" href="../css/components/header.css">
     <link rel="stylesheet" href="../css/components/footer.css">
     <link rel="stylesheet" href="../css/components/calculadora-arl.css">
+    
+    <!-- Estilos críticos para el loader (inline para evitar FOUC) -->
+    <style>
+        /* Ocultar contenido principal inicialmente */
+        body:not(.loaded) .main-content {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        body.loaded .main-content {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        /* Loader de página */
+        #page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .loader-content {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loader-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #E95420;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .loader-text {
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .loader-subtext {
+            color: #6c757d;
+            font-size: 13px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+    </style>
 </head>
 <body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Cargando Calculadora ARL</p>
+            <p class="loader-subtext">Por favor espere...</p>
+        </div>
+    </div>
+
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="sr-only sr-only-focusable">Saltar al contenido principal</a>
     
-    <!-- Header -->
+    <!-- Header dinámico -->
     <div id="header-placeholder"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content" id="main-content">
         <div class="container">
             <!-- Page Header -->
             <header class="page-header">
@@ -206,7 +290,7 @@
                         <tr>
                             <th>Clase de riesgo</th>
                             <th>Tasa de cotización</th>
-                            <th>Ejemplos de zctividades económicas</th>
+                            <th>Ejemplos de actividades económicas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -240,22 +324,18 @@
             </section>
         </div>
     </main>
-    <!-- Footer dinámico -->
-  <div id="footer-placeholder"></div>
 
-    <!-- JavaScript Imports - Modular Structure -->
-    <!-- <script src="assets/js/utils/smooth-scroll.js"></script>
-    <script src="assets/js/components/calculadora-arl.js" type="module"></script>
-    <script src="assets/js/main.js"></script> -->
-    <script src="assets/js/components/navigation.js"></script>
+    <!-- Footer dinámico -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript Imports - ORDEN CORRECTO -->
+    <script src="../js/components/navigation.js"></script>
     <script src="../js/components/calculadora-arl.js" type="module"></script>
    
-   <script type="module">
+    <script type="module">
         import { LayoutLoader } from "../js/components/layout-loader.js";
         LayoutLoader.init();
     </script>
-
-    
     
     <!-- Analytics (replace with your tracking code) -->
     <script>

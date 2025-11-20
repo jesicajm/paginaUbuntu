@@ -1,5 +1,5 @@
 /* ========================================
-   NAVIGATION COMPONENT - Ubuntu Seguros (UPDATED)
+   NAVIGATION COMPONENT - Ubuntu Seguros (FIXED)
    ======================================== */
 
    const Navigation = {
@@ -8,21 +8,78 @@
     mobileMenu: null,
     isMenuOpen: false,
     lastScrollY: 0,
+    initialized: false,
     
+    /**
+     * Inicializa la navegación cuando el header está disponible
+     */
     init() {
-        this.header = document.querySelector('.header');
-        this.mobileToggle = document.getElementById('mobile-menu-toggle');
-        this.mobileMenu = document.getElementById('mobile-menu');
-        
-        if (!this.header) {
-            console.error('Header element not found!');
-            return;
-        }
-        
-        this.bindEvents();
-        this.bindNavigationClicks();
-        
-  
+        // Esperar a que el header esté disponible
+        this.waitForHeader().then(() => {
+            this.header = document.querySelector('.header');
+            this.mobileToggle = document.getElementById('mobile-menu-toggle');
+            this.mobileMenu = document.getElementById('mobile-menu');
+            
+            if (!this.header) {
+                console.error('Header element not found after waiting!');
+                return;
+            }
+            
+            if (!this.mobileToggle) {
+                console.warn('Mobile menu toggle not found');
+                return;
+            }
+            
+            if (!this.mobileMenu) {
+                console.warn('Mobile menu not found');
+                return;
+            }
+            
+            this.bindEvents();
+            this.bindNavigationClicks();
+            this.initialized = true;
+            
+            console.log('✅ Navigation initialized successfully');
+        }).catch(error => {
+            console.error('Error initializing navigation:', error);
+        });
+    },
+
+    /**
+     * Espera a que el header esté disponible en el DOM
+     * @returns {Promise} Promesa que se resuelve cuando el header existe
+     */
+    waitForHeader() {
+        return new Promise((resolve, reject) => {
+            // Si el header ya existe, resolver inmediatamente
+            if (document.querySelector('.header')) {
+                resolve();
+                return;
+            }
+
+            // Usar MutationObserver para esperar que se agregue el header
+            const observer = new MutationObserver((mutations, obs) => {
+                if (document.querySelector('.header')) {
+                    obs.disconnect();
+                    resolve();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+
+            // Timeout de seguridad (5 segundos)
+            setTimeout(() => {
+                observer.disconnect();
+                if (document.querySelector('.header')) {
+                    resolve();
+                } else {
+                    reject(new Error('Header not loaded after timeout'));
+                }
+            }, 5000);
+        });
     },
 
     bindEvents() {
@@ -81,8 +138,6 @@
     },
 
     openMobileMenu() {
-    
-        
         if (!this.mobileMenu || !this.mobileToggle) {
             console.error('Mobile menu elements not found!');
             return;
@@ -100,12 +155,10 @@
         // Focus management for accessibility
         this.mobileMenu.focus();
         
-
+        console.log('📱 Mobile menu opened');
     },
 
     closeMobileMenu() {
-      
-        
         if (!this.mobileMenu || !this.mobileToggle) {
             return;
         }
@@ -119,9 +172,8 @@
         // Restore body scroll
         document.body.style.overflow = '';
 
+        console.log('📱 Mobile menu closed');
     },
-
-
 
     bindNavigationClicks() {
         // Smooth scroll for anchor links
@@ -180,6 +232,17 @@
         if (!isMobile && this.isMenuOpen) {
             this.closeMobileMenu();
         }
+    },
+
+    /**
+     * Método para reinicializar si es necesario
+     */
+    reinit() {
+        if (this.initialized) {
+            console.log('Navigation already initialized');
+            return;
+        }
+        this.init();
     }
 };
 
