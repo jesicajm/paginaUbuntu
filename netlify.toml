@@ -3,12 +3,28 @@
 [build]
   # Directorio a publicar (raíz del proyecto)
   publish = "."
-  
+
 # Redirects para manejo de rutas
+# IMPORTANTE: Las reglas más específicas DEBEN ir PRIMERO
+
+# NO redirigir archivos estáticos
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+# NO redirigir la calculadora
+[[redirects]]
+  from = "/calculadora-arl/*"
+  to = "/calculadora-arl/:splat"
+  status = 200
+
+# Solo redirigir rutas que NO sean archivos reales (SPA fallback)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 # Headers de seguridad
 [[headers]]
