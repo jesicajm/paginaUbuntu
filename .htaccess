@@ -1,5 +1,0 @@
-# Habilitar el motor de reescritura
-RewriteEngine On
-
-# Redirigir calculadora-arl a la ruta real
-RewriteRule ^calculadora-arl/?$ /assets/components/calculadora-arl.html [L]
