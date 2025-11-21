@@ -1,8 +1,0 @@
-# Redirigir calculadora-arl a la ruta real
-/calculadora-arl    /assets/components/calculadora-arl.html    200
-
-# Opcional: Redirigir también con barra final
-/calculadora-arl/   /assets/components/calculadora-arl.html    200
-
-# Redirigir URL vieja a nueva (SEO)
-/assets/components/calculadora-arl.html    /calculadora-arl    301
