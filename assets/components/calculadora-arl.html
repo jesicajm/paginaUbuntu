@@ -330,11 +330,17 @@
 
     <!-- JavaScript Imports - ORDEN CORRECTO -->
     <script src="/assets/js/components/navigation.js"></script>
-    <script src="/assets/js/components/calculadora-arl.js" type="module"></script>
+    <script src="/assets/js/components/calculadora-arl.js"></script>
    
-    <script type="module">
-        import { LayoutLoader } from "../js/components/layout-loader.js";
-        LayoutLoader.init();
+    <script>
+        // Importar layout loader
+        import('/assets/js/components/layout-loader.js')
+            .then(module => {
+                if (module.LayoutLoader) {
+                    module.LayoutLoader.init();
+                }
+            })
+            .catch(err => console.error('Error loading LayoutLoader:', err));
     </script>
     
     <!-- Analytics (replace with your tracking code) -->
