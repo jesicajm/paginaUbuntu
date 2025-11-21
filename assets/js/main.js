@@ -371,7 +371,7 @@ const App = {
                     <p><a href="#pillars-section">Pilares de Valor</a></p>
                     <p><a href="#estadisticas">Nuestros Resultados</a></p>
                     <p><a href="#features">Por qué nos eligen</a></p>
-                    <p><a href="/assets/components/calculadora-arl.html">Calculadora ARL</a></p>
+                    <p><a href="/calculadora-arl">Calculadora ARL</a></p>
                 `
             },
             {
