@@ -81,8 +81,8 @@
             
             // Cargar componentes en paralelo para mayor velocidad
             await Promise.all([
-                this.loadComponent('header-placeholder', '../components/header.html'),
-                this.loadComponent('footer-placeholder', '../components/footer.html')
+                this.loadComponent('header-placeholder', '/assets/components/header.html'),
+                this.loadComponent('footer-placeholder', '/assets/components/footer.html')
             ]);
             
             // Esperar un momento para asegurar que el DOM esté actualizado
