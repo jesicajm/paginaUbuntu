@@ -34,28 +34,51 @@
     <link rel="icon" type="image/png" href="../assets/images/logos/logo.png">
     <link rel="apple-touch-icon" href="logo.png">
 
-    <!-- ============ META PIXEL ============ -->
+    <!-- ============ META PIXEL (deferido para mejor LCP) ============ -->
     <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () {
-                n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        // Pre-cola para no perder eventos. Las llamadas a fbq() se almacenan
+        // y se disparan cuando el script real cargue 2 segundos después del load.
+        window.fbq = window.fbq || function() {
+            (window.fbq.q = window.fbq.q || []).push(arguments);
+        };
+        window._fbq = window.fbq;
+        window.fbq.push = window.fbq;
+        window.fbq.loaded = true;
+        window.fbq.version = '2.0';
+        window.fbq.queue = [];
+
+        // Cargar el script real DESPUÉS de que la página esté visible (mejora LCP)
+        function loadMetaPixel() {
+            var t = document.createElement('script');
+            t.async = true;
+            t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+            t.onload = function() {
+                fbq('init', '1440981447587526');
+                fbq('track', 'PageView');
             };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-            n.queue = []; t = b.createElement(e); t.async = !0;
-            t.src = v; s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1440981447587526');
-        fbq('track', 'PageView');
+            document.head.appendChild(t);
+        }
+        if (document.readyState === 'complete') {
+            setTimeout(loadMetaPixel, 1500);
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(loadMetaPixel, 1500);
+            });
+        }
     </script>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=1440981447587526&ev=PageView&noscript=1" /></noscript>
 
-    <!-- ============ FUENTES ============ -->
+    <!-- ============ FUENTES OPTIMIZADAS ============ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Preload de Fraunces 700 (fuente del H1, elemento LCP) para acelerar el render -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="https://fonts.gstatic.com/s/fraunces/v33/6NUh8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk.woff2">
+
+    <!-- Reducido de 10 weights a 4: Fraunces 600/700 + 500 italic, Inter 400/500/600 -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- ============ STRUCTURED DATA: ORGANIZATION ============ -->
     <script type="application/ld+json">
@@ -242,35 +265,36 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(15, 15, 16, 0.95);
+            background: rgba(248, 245, 238, 0.92);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(15,15,16,0.08);
         }
 
         .nav-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 14px 0;
         }
 
         .nav-logo {
             display: flex;
             align-items: center;
-            line-height: 0;
+            gap: 10px;
         }
 
         .nav-logo-img {
-            height: 44px;
-            width: auto;
-            display: block;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
         }
 
-        @media (min-width: 720px) {
-            .nav-logo-img {
-                height: 50px;
-            }
+        .nav-logo-text {
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--black);
         }
 
         .nav-actions {
@@ -285,19 +309,19 @@
             gap: 6px;
             font-size: 0.92rem;
             font-weight: 500;
-            color: var(--gray-300);
+            color: var(--gray-700);
         }
 
-        .nav-phone:hover { color: var(--orange-light); }
+        .nav-phone:hover { color: var(--orange); }
 
         @media (min-width: 720px) {
             .nav-phone { display: inline-flex; }
         }
 
         .nav-cta {
-            background: var(--orange);
+            background: var(--black);
             color: var(--white);
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 100px;
             font-size: 0.88rem;
             font-weight: 600;
@@ -308,9 +332,8 @@
         }
 
         .nav-cta:hover {
-            background: var(--orange-dark);
+            background: var(--orange);
             transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(229, 90, 43, 0.4);
         }
 
         /* ============ HERO ============ */
@@ -849,17 +872,6 @@
         .check-yes { color: #16a34a; font-weight: 600; }
         .check-no { color: var(--gray-500); }
 
-        .compare-note {
-            margin-top: 18px;
-            font-size: 0.85rem;
-            color: var(--gray-500);
-            text-align: center;
-            line-height: 1.55;
-            max-width: 820px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         /* ============ TESTIMONIALS ============ */
         .testimonials-grid {
             display: grid;
@@ -1209,9 +1221,13 @@
     <header class="navbar">
         <div class="container nav-inner">
             <a href="/" class="nav-logo" aria-label="Ubuntú Seguros - Inicio">
-                <img src="../assets/images/logos/logoSinCirculo.png" alt="Ubuntú Seguros" class="nav-logo-img" height="50">
+                <img src="../assets/images/logos/logoSinCirculo.png" alt="Logo Ubuntú Seguros" class="nav-logo-img" width="38" height="38" fetchpriority="high">
             </a>
             <div class="nav-actions">
+                <a href="tel:+573000000000" class="nav-phone" aria-label="Llámanos">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    300 000 0000
+                </a>
                 <a href="#cotizar" class="nav-cta">
                     Cotizar gratis
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1239,7 +1255,7 @@
                             Comparar mi póliza ideal
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                         </a>
-                        <a href="https://wa.me/573053230642?text=Hola%20Ubuntú,%20quiero%20cotizar%20una%20póliza%20de%20salud" class="btn-secondary" target="_blank" rel="noopener">
+                        <a href="https://wa.me/573000000000?text=Hola%20Ubuntú,%20quiero%20cotizar%20una%20póliza%20de%20salud" class="btn-secondary" target="_blank" rel="noopener">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                             WhatsApp
                         </a>
@@ -1247,11 +1263,15 @@
                     <div class="hero-trust">
                         <div class="hero-trust-item">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                            10+ años de experiencia
+                            14+ años de experiencia
                         </div>
                         <div class="hero-trust-item">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
                             Asesoría sin costo
+                        </div>
+                        <div class="hero-trust-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            Vigilada Superfinanciera
                         </div>
                     </div>
                 </div>
@@ -1266,10 +1286,6 @@
                         <div class="form-row">
                             <label class="form-label" for="nombre">Nombre completo</label>
                             <input class="form-input" type="text" id="nombre" name="nombre" required placeholder="Ej: María González" autocomplete="name">
-                        </div>
-                        <div class="form-row">
-                            <label class="form-label" for="email">Email</label>
-                            <input class="form-input" type="email" id="email" name="email" required placeholder="tunombre@correo.com" autocomplete="email">
                         </div>
                         <div class="form-row form-row-double">
                             <div>
@@ -1312,19 +1328,6 @@
                                     <option>Otra</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <label class="form-label" for="ingreso">Rango de ingresos mensuales</label>
-                            <select class="form-select" id="ingreso" name="ingreso" required>
-                                <option value="">Selecciona tu rango</option>
-                                <option value="menos_4M">Menos de $4 millones</option>
-                                <option value="4M_8M">$4M - $8M</option>
-                                <option value="8M_15M">$8M - $15M</option>
-                                <option value="mas_15M">Más de $15M</option>
-                            </select>
-                            <p style="font-size:12px;color:var(--gray-500,#6b7280);margin-top:6px;line-height:1.4;">
-                                Lo usamos solo para recomendarte el plan que mejor se ajusta a tu presupuesto. 100% confidencial.
-                            </p>
                         </div>
                         <button type="submit" class="form-submit">
                             Recibir cotización gratuita
@@ -1507,59 +1510,44 @@
                             <td>Supersalud</td>
                         </tr>
                         <tr>
-                            <td>Libertad de elección de médico</td>
-                            <td><span class="check-yes">Cualquier médico o clínica</span></td>
-                            <td>Red propia + clínicas VIP</td>
-                            <td>Red de la EPS (ampliada)</td>
-                        </tr>
-                        <tr>
-                            <td>Reembolso fuera de red</td>
-                            <td><span class="check-yes">Sí</span></td>
-                            <td><span class="check-no">No</span></td>
-                            <td><span class="check-no">No</span></td>
-                        </tr>
-                        <tr>
-                            <td>Acceso directo a especialistas</td>
-                            <td><span class="check-yes">Sí</span></td>
-                            <td><span class="check-yes">Sí</span></td>
-                            <td>Algunas requieren remisión</td>
+                            <td>Libertad de médico</td>
+                            <td><span class="check-yes">Total + reembolso</span></td>
+                            <td>Red cerrada</td>
+                            <td>Red cerrada (de la EPS)</td>
                         </tr>
                         <tr>
                             <td>Cobertura internacional</td>
-                            <td><span class="check-yes">Sí (planes globales)</span></td>
-                            <td>Limitada según plan</td>
+                            <td><span class="check-yes">Sí (según plan)</span></td>
+                            <td><span class="check-no">No</span></td>
                             <td><span class="check-no">No</span></td>
                         </tr>
                         <tr>
-                            <td>Precio mensual por persona*</td>
-                            <td>$92.000 – $1.000.000+</td>
-                            <td>$200.000 – $1.000.000+</td>
-                            <td>$50.000 – $300.000</td>
+                            <td>Precio promedio mensual</td>
+                            <td>$200.000 - $1.000.000</td>
+                            <td>$150.000 - $600.000</td>
+                            <td>$50.000 - $250.000</td>
+                        </tr>
+                        <tr>
+                            <td>Requiere EPS afiliada</td>
+                            <td><span class="check-yes">Sí</span></td>
+                            <td><span class="check-yes">Sí</span></td>
+                            <td>Sí (la misma)</td>
                         </tr>
                         <tr>
                             <td>Edad máxima de ingreso</td>
-                            <td>Hasta 69-70 años</td>
-                            <td>Hasta 60-64 años</td>
-                            <td>Varía según la EPS</td>
+                            <td>Hasta 63-65 años</td>
+                            <td>Hasta 60-65 años</td>
+                            <td>Sin límite estricto</td>
                         </tr>
                         <tr>
-                            <td>Permanencia tras edad de ingreso</td>
-                            <td><span class="check-yes">Vitalicia</span></td>
-                            <td><span class="check-yes">Vitalicia</span></td>
-                            <td><span class="check-yes">Vitalicia</span></td>
-                        </tr>
-                        <tr>
-                            <td>Requiere EPS contributiva</td>
-                            <td>Sí (cualquier EPS)</td>
-                            <td>Sí (cualquier EPS)</td>
-                            <td>Sí (la misma EPS)</td>
+                            <td>Mejor para</td>
+                            <td>Quien viaja, ejecutivos, familias premium</td>
+                            <td>Familias jóvenes, condiciones crónicas estables</td>
+                            <td>Quien quiere mejorar su EPS sin gastar mucho</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="compare-note">
-                *Rangos referenciales por persona adulta. El precio final varía según edad, plan, ciudad, beneficiarios y estado de salud. En las tres modalidades, las enfermedades preexistentes están excluidas o sujetas a períodos de carencia entre 6 y 24 meses.
-            </p>
         </div>
     </section>
 
@@ -1572,7 +1560,7 @@
             <div class="testimonials-grid">
                 <article class="testimonial">
                     <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-                    <p class="testimonial-text">"Llevaba meses dándole vueltas. En una sola llamada me explicaron las diferencias entre tres planes y ahorré casi 15% frente a la primera cotización que tenía."</p>
+                    <p class="testimonial-text">"Llevaba meses dándole vueltas. En una sola llamada me explicaron las diferencias entre tres planes y ahorré casi 40% frente a la primera cotización que tenía."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar">M</div>
                         <div>
@@ -1712,8 +1700,7 @@
             <div class="footer-grid">
                 <div>
                     <div class="footer-brand">
-                        <img src="../assets/images/logos/logoSinCirculo.png" alt="Logo Ubuntú Seguros" width="44" height="44">
-                        <span class="footer-brand-name"></span>
+                        <img src="../assets/images/logos/logoSinCirculo.png" alt="Logo Ubuntú Seguros" width="44" height="44" loading="lazy">
                     </div>
                     <p class="footer-desc">Intermediarios independientes especializados en pólizas de salud privadas en Colombia. Asesoría objetiva y acompañamiento personalizado de principio a fin.</p>
                 </div>
@@ -1731,7 +1718,7 @@
                 <div class="footer-col">
                     <h4>Contacto</h4>
                     <ul>
-                        <li><a href="https://wa.me/573053230642">WhatsApp: 305 323 0642</a></li>
+                        <li><a href="https://wa.me/573000000000">WhatsApp: 300 000 0000</a></li>
                         <li><a href="mailto:hola@ubuntuseguros.co">hola@ubuntuseguros.co</a></li>
                         <li>Medellín, Colombia</li>
                         <li>Lun - Vie: 8am - 6pm</li>
@@ -1747,7 +1734,7 @@
     </footer>
 
     <!-- ============ FLOATING WHATSAPP ============ -->
-    <a href="https://wa.me/573053230642?text=Hola%20Ubuntú,%20quiero%20cotizar%20una%20póliza%20de%20salud" class="wa-float" aria-label="Escríbenos por WhatsApp" target="_blank" rel="noopener">
+    <a href="https://wa.me/573000000000?text=Hola%20Ubuntú,%20quiero%20cotizar%20una%20póliza%20de%20salud" class="wa-float" aria-label="Escríbenos por WhatsApp" target="_blank" rel="noopener">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
 
@@ -1760,21 +1747,6 @@
             <h3 id="modalTitle">¡Solicitud recibida!</h3>
             <p>Una de nuestras asesoras te contactará en menos de 24 horas con tu comparativo personalizado.</p>
             <button class="btn-primary" onclick="closeSuccessModal()">Cerrar</button>
-        </div>
-    </div>
-
-    <!-- ============ ERROR MODAL ============ -->
-    <div class="modal" id="errorModal" role="dialog" aria-labelledby="errorModalTitle" aria-hidden="true">
-        <div class="modal-box">
-            <div class="modal-icon" style="background:#fee2e2;color:#dc2626;">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </div>
-            <h3 id="errorModalTitle">No pudimos enviar tu solicitud</h3>
-            <p>Hubo un problema con el envío. Puedes intentar de nuevo o escribirnos directamente por WhatsApp.</p>
-            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
-                <button class="btn-primary" onclick="closeErrorModal()">Intentar de nuevo</button>
-                <a class="btn-secondary" href="https://wa.me/573000000000?text=Hola%20Ubuntú,%20tuve%20un%20problema%20con%20el%20formulario%20de%20cotización" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;">WhatsApp</a>
-            </div>
         </div>
     </div>
 
@@ -1795,48 +1767,10 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // ============ STATE ============
-        let leadEventSent = false;     // evita duplicar evento Lead en Pixel
-        let formStartFired = false;    // evita duplicar evento FormStart
-        let viewContentFired = false;  // evita duplicar evento ViewContent
-
-        // ============ HELPERS ============
+        // Helper para leer cookies (Meta Pixel)
         function getCookie(name) {
             const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
             return match ? match[2] : null;
-        }
-
-        // Determina si el lead es de ICP (Perfil Ideal): ingresos ≥ 8M COP/mes
-        function isQualifiedLead(ingresoMensual) {
-            return typeof ingresoMensual === 'number' && ingresoMensual >= 8000000;
-        }
-
-        // Convierte el rango seleccionado en un piso numérico (COP/mes)
-        // Esto permite que las reglas de Firestore y la Cloud Function filtren con ingresoMensual >= 8M
-        function parseIncomeFloor(rango) {
-            switch (rango) {
-                case 'menos_4M': return 0;
-                case '4M_8M':    return 4000000;
-                case '8M_15M':   return 8000000;
-                case 'mas_15M':  return 15000000;
-                default:         return 0;
-            }
-        }
-
-        // Estimación de valor mensual (LTV proxy en COP) para SubmitApplication
-        function estimateLeadValue(edad, personas) {
-            let base = 92000;
-            if (edad === '31 - 45 años') base = 180000;
-            else if (edad === '46 - 55 años') base = 280000;
-            else if (edad === '56 - 65 años') base = 420000;
-            else if (edad === '66+ años') base = 600000;
-
-            let multiplier = 1;
-            if (personas === 'Pareja (2)') multiplier = 1.8;
-            else if (personas === 'Familia (3-4)') multiplier = 3.2;
-            else if (personas === 'Familia grande (5+)') multiplier = 4.5;
-
-            return Math.round(base * multiplier);
         }
 
         // ============ FAQ ACCORDION ============
@@ -1849,39 +1783,11 @@
             });
         });
 
-        // ============ META PIXEL: ViewContent cuando el formulario es visible ============
-        const quoteCard = document.getElementById('cotizar');
-        if (quoteCard && 'IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !viewContentFired && typeof fbq !== 'undefined') {
-                        fbq('track', 'ViewContent', {
-                            content_name: 'Formulario Cotización Salud',
-                            content_category: 'lead_form'
-                        });
-                        viewContentFired = true;
-                    }
-                });
-            }, { threshold: 0.5 });
-            observer.observe(quoteCard);
-        }
-
-        // ============ FORM ============
+        // ============ FORM SUBMIT → FIRESTORE ============
         const form = document.getElementById('quoteForm');
         const submitBtn = form.querySelector('.form-submit');
         const originalBtnHTML = submitBtn.innerHTML;
 
-        // META PIXEL: FormStart cuando el usuario interactúa por primera vez con el formulario
-        form.addEventListener('focusin', () => {
-            if (!formStartFired && typeof fbq !== 'undefined') {
-                fbq('trackCustom', 'FormStart', {
-                    form_name: 'cotizacion_salud_landing'
-                });
-                formStartFired = true;
-            }
-        }, { once: false });
-
-        // ============ FORM SUBMIT → FIRESTORE ============
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -1891,80 +1797,31 @@
 
             const formData = new FormData(form);
             const fullName = (formData.get('nombre') || '').trim();
-            const email = (formData.get('email') || '').trim().toLowerCase();
-            // Normalización robusta: quita TODO lo que no sea dígito (guiones, paréntesis, espacios, +)
-            const phone = (formData.get('whatsapp') || '').replace(/\D/g, "");
+            const phone = (formData.get('whatsapp') || '').trim().replace(/\s+/g, '');
             const edad = formData.get('edad') || '';
             const personas = formData.get('personas') || '';
             const ciudad = formData.get('ciudad') || '';
-            const ingresoRango = formData.get('ingreso') || '';
-            const ingresoMensual = parseIncomeFloor(ingresoRango);
-
-            // Validación de email (formato básico)
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnHTML;
-                document.getElementById('errorModal').classList.add('active');
-                document.querySelector('#errorModal h3').textContent = 'Revisa tu email';
-                document.querySelector('#errorModal p').textContent = 'Por favor ingresa una dirección de email válida.';
-                return;
-            }
-
-            // Validación mínima de teléfono colombiano (10 dígitos)
-            if (phone.length < 10) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnHTML;
-                document.getElementById('errorModal').classList.add('active');
-                document.querySelector('#errorModal h3').textContent = 'Revisa tu número de WhatsApp';
-                document.querySelector('#errorModal p').textContent = 'Por favor ingresa un número de celular colombiano válido (10 dígitos).';
-                return;
-            }
-
-            // Validación: rango de ingresos requerido
-            if (!ingresoRango) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnHTML;
-                document.getElementById('errorModal').classList.add('active');
-                document.querySelector('#errorModal h3').textContent = 'Falta tu rango de ingresos';
-                document.querySelector('#errorModal p').textContent = 'Selecciona el rango de ingresos para que podamos recomendarte el plan correcto.';
-                return;
-            }
 
             // Separar primer / último nombre
             const nameParts = fullName.split(/\s+/);
             const firstName = nameParts[0] || '';
             const lastName = nameParts.slice(1).join(' ') || '';
 
-            // Cookies de tracking Meta (para Conversions API server-side)
+            // Cookies de tracking Meta
             const fbp = getCookie('_fbp') || null;
             const fbc = getCookie('_fbc') || null;
             const eventId = `lead_${Date.now()}_${phone}`;
-
-            // ICP: ingresos ≥ 8M COP/mes
-            const qualified = isQualifiedLead(ingresoMensual);
-            const estimatedValue = estimateLeadValue(edad, personas);
 
             const leadData = {
                 fullName,
                 firstName,
                 lastName,
-                email,
                 phone,
                 city: ciudad,
                 country: "CO",
 
                 edadRango: edad,
                 personasACubrir: personas,
-
-                // Ingreso en formato compatible con quiz (number) + el rango original como string
-                ingresoMensual,
-                ingresoMensualRango: ingresoRango,
-                incomeBracket: ingresoMensual >= 8000000 ? "8M+" : "menor_8M",
-
-                // Calidad / scoring
-                isQualified: qualified,
-                estimatedMonthlyValue: estimatedValue,
 
                 source: "landing_directa",
 
@@ -1975,7 +1832,6 @@
                 fbc,
                 user_agent: navigator.userAgent,
                 landing_url: window.location.href,
-                referrer: document.referrer || null,
 
                 createdAt: serverTimestamp()
             };
@@ -1987,40 +1843,17 @@
 
                 console.log("✅ Lead guardado en Firestore");
 
-                // ============ META PIXEL EVENTS ============
-                // Solo disparar si no se han enviado antes en esta sesión
-                if (!leadEventSent && typeof fbq !== 'undefined') {
+                // Meta Pixel - evento Lead
+                if (typeof fbq !== 'undefined') {
                     fbq('track', 'Lead', {
                         source: 'landing_directa',
-                        city: ciudad,
-                        age_range: edad,
-                        people_to_cover: personas,
-                        income_bracket: ingresoMensual >= 8000000 ? "8M+" : "menor_8M",
-                        is_qualified: qualified,
                         eventID: eventId
                     });
-
-                    // Para leads ICP (≥ 8M), dispara SubmitApplication con valor monetario
-                    // Esto le dice a Meta: "este lead vale X, búscame más como este"
-                    if (qualified) {
-                        fbq('track', 'SubmitApplication', {
-                            value: ingresoMensual,
-                            currency: 'COP',
-                            content_name: 'Lead ICP - Salud Premium',
-                            eventID: eventId
-                        });
-                    }
-
-                    leadEventSent = true;
                 }
 
                 // Google Ads conversion (descomenta y reemplaza con tu ID real cuando lo tengas)
                 // if (typeof gtag !== 'undefined') {
-                //     gtag('event', 'conversion', {
-                //         'send_to': 'AW-XXXXX/XXXXX',
-                //         'value': estimatedValue,
-                //         'currency': 'COP'
-                //     });
+                //     gtag('event', 'conversion', { 'send_to': 'AW-XXXXX/XXXXX' });
                 // }
 
                 // Mostrar modal de éxito
@@ -2029,10 +1862,7 @@
 
             } catch (err) {
                 console.error("❌ Error al guardar lead:", err);
-                // Modal de error in-page (sin alert)
-                document.querySelector('#errorModal h3').textContent = 'No pudimos enviar tu solicitud';
-                document.querySelector('#errorModal p').textContent = 'Hubo un problema con el envío. Puedes intentar de nuevo o escribirnos directamente por WhatsApp.';
-                document.getElementById('errorModal').classList.add('active');
+                alert("Tuvimos un problema enviando tu solicitud. Por favor, intenta de nuevo o escríbenos por WhatsApp.");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnHTML;
@@ -2056,16 +1886,6 @@
         window.closeSuccessModal = () => {
             document.getElementById('successModal').classList.remove('active');
         };
-        window.closeErrorModal = () => {
-            document.getElementById('errorModal').classList.remove('active');
-        };
-
-        // Cerrar modales al click fuera
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.classList.remove('active');
-            });
-        });
     </script>
 </body>
 </html>
